@@ -4,30 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0087790-c257-4026-bb67-e461a28fe4f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="e0087790-c257-4026-bb67-e461a28fe4f4" name="Changes" comment="9/20/2024">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/task1_two_human_players_20_cards/DeckOfCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/task1_two_human_players_20_cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task1_two_human_players_20_cards/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/task1_two_human_players_20_cards/FoolDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task1_two_human_players_20_cards/FoolDemo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;oleksandrapohorie90&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/oleksandrapohorie90/FoolGame.git&quot;,
+    &quot;accountId&quot;: &quot;fe812d27-b91e-46bb-8461-74153accb197&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2mDxYvTNu30RkL0g5ktWrYatnHM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/org/example/Main.java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/org/example/Main.java&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/spades,diamonds,hearts,clubs" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -37,7 +69,45 @@
       <option name="presentableId" value="Default" />
       <updated>1726625001600</updated>
     </task>
+    <task id="LOCAL-00001" summary="-created a project with folders">
+      <option name="closed" value="true" />
+      <created>1726631280842</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726631280842</updated>
+    </task>
+    <task id="LOCAL-00002" summary="-created a project with folders">
+      <option name="closed" value="true" />
+      <created>1726631316722</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726631316722</updated>
+    </task>
+    <task id="LOCAL-00003" summary="-created a project with folders">
+      <option name="closed" value="true" />
+      <created>1726631335509</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726631335509</updated>
+    </task>
+    <task id="LOCAL-00004" summary="9/20/2024">
+      <option name="closed" value="true" />
+      <created>1726879017194</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726879017194</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="-created a project with folders" />
+    <MESSAGE value="9/20/2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="9/20/2024" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

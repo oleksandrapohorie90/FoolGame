@@ -9,10 +9,10 @@ public class Card {
     //refers to which color isTrump - kozyr'
     boolean isTrump;
 
-    public Card(String suit, String rank, boolean isTrump) {
+    public Card(String suit, String rank) {
         this.suit = suit;
         this.rank = rank;
-        this.isTrump = isTrump;
+        this.isTrump = false;
     }
 
     @Override
