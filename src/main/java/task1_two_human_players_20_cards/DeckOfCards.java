@@ -31,7 +31,7 @@ public class DeckOfCards {
     //to choose the trumpCard
     public void chooseTrumpCard() {
         //taking one card to be trumpCard to choose suit - kozir'
-        trumpCard = cards.get(cards.size() - 1);
+        trumpCard = cards.getLast();
         //now collecting all the cards that are the same suit as above - kozirnie
         for (Card card : cards) {
             if (card.suit.equals(trumpCard.suit)) {
@@ -41,5 +41,13 @@ public class DeckOfCards {
         System.out.println("The trumpCard is " + trumpCard);
     }
 
+    //to draw the card
+    public void drawCard() throws Exception {
+        if (!cards.isEmpty()) {
+            cards.remove(cards.getLast());
+        } else {
+            throw new Exception("This Deck doesn't have any cards to draw");
+        }
+    }
 
 }
