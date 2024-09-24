@@ -10,12 +10,13 @@ public class DeckOfCards {
     List<Card> cards;
     Card trumpCard;
     String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
-    String[] ranks = {"6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
+    String[] ranks = {"6", "7", "8", "9", "10"};
 
     public DeckOfCards() {
         this.cards = new ArrayList<>();
     }
 
+    //20 cards
     public List<Card> addCards() {
         for (String suit : suits) {
             for (String rank : ranks) {
@@ -41,13 +42,17 @@ public class DeckOfCards {
         System.out.println("The trumpCard is " + trumpCard);
     }
 
-    //to draw the card
-    public void drawCard() throws Exception {
+    //to draw the card and add it to the players deck
+    public List<Card> drawCard(int amountOfCards) throws Exception {
+        List<Card> playerDeckOfCards = new ArrayList<>();
         if (!cards.isEmpty()) {
-            cards.remove(cards.getLast());
-        } else {
-            throw new Exception("This Deck doesn't have any cards to draw");
+            for (int i = 0; i < amountOfCards; i++) {
+                playerDeckOfCards.add(cards.getLast());
+                cards.remove(cards.getLast());
+            }
         }
+        return playerDeckOfCards;
     }
+
 
 }
