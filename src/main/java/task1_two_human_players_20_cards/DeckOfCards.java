@@ -16,6 +16,13 @@ public class DeckOfCards {
         this.cards = new ArrayList<>();
     }
 
+    //print the deckOfCards
+    public void printDeckOfCards() {
+        for (Card card : cards) {
+            System.out.println("The card suit is: " + card.suit + "\nThe card rank is: " + card.rank);
+        }
+    }
+
     //20 cards
     public List<Card> addCards() {
         for (String suit : suits) {
@@ -43,7 +50,7 @@ public class DeckOfCards {
     }
 
     //to draw the card and add it to the players deck
-    public List<Card> drawCard(int amountOfCards) throws Exception {
+    public List<Card> drawCard(int amountOfCards) {
         List<Card> playerDeckOfCards = new ArrayList<>();
         if (!cards.isEmpty()) {
             for (int i = 0; i < amountOfCards; i++) {
