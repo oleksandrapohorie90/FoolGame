@@ -32,21 +32,20 @@ public class Player {
     //use a trump card as a parameter
     //ignore all the cards that are not trump
     public Card showLowestCard(Card trumpCard) {
-        List<Card> cardsThatAreTheSameAsTrumpCard = new ArrayList<>();
+        List<Card> cards = new ArrayList<>();
         Card tempCard = null;
 
         for (Card card : deck) {
             if (card.suit.equals(trumpCard.suit)) {
-                cardsThatAreTheSameAsTrumpCard.add(card);
+                cards.add(card);
             }
         }
-        cardsThatAreTheSameAsTrumpCard = cardsThatAreTheSameAsTrumpCard.isEmpty() ? deck : cardsThatAreTheSameAsTrumpCard;
+        cards = cards.isEmpty() ? deck : cards;
 
-        for (int i = 0; i < cardsThatAreTheSameAsTrumpCard.size() - 1; i++) {
-            tempCard = compareRanks(cardsThatAreTheSameAsTrumpCard.get(i), cardsThatAreTheSameAsTrumpCard.get(i++));
+        for (int i = 0; i < cards.size() - 1; i++) {
+            tempCard = compareRanks(cards.get(i), cards.get(i++));
         }
         return tempCard;
-
     }
 
     //compare ranks when attacking
