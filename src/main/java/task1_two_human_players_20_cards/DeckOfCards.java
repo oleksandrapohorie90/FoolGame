@@ -10,7 +10,7 @@ public class DeckOfCards {
     List<Card> cards;
     Card trumpCard;
     String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
-    String[] ranks = {"6", "7", "8", "9", "10"};
+    Integer[] ranks = {6, 7, 8, 9, 10};
 
     public DeckOfCards() {
         this.cards = new ArrayList<>();
@@ -26,7 +26,7 @@ public class DeckOfCards {
     //20 cards
     public List<Card> addCards() {
         for (String suit : suits) {
-            for (String rank : ranks) {
+            for (Integer rank : ranks) {
                 cards.add(new Card(suit, rank));
             }
         }
@@ -60,6 +60,10 @@ public class DeckOfCards {
         }
         return playerDeckOfCards;
     }
+
+
+
+
 
 
 }
