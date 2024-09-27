@@ -6,12 +6,15 @@ public class FoolDemo {
     public static void main(String[] args) {
         DeckOfCards card = new DeckOfCards();
         Card trumpCard = new Card("Hearts", 6);
-        Player player1 = new Player();
-        Player player2 = new Player();
 
+        //deck thats used for both players and add cards
         card.addCards();
+        Player player1 = new Player(card);
+        Player player2 = new Player(card);
+
+
 //        card.chooseTrumpCard();
-//        card.printDeckOfCards();
+          //card.printDeckOfCards();
 //
 //        player1.deck = card.drawCard(6);
 //        player1.printDeckOfCards();

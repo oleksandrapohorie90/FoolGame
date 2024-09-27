@@ -16,15 +16,17 @@ public class Player {
     //      defend
 
     List<Card> deck;
-    DeckOfCards deckOfCards = new DeckOfCards();
+    DeckOfCards deckOfCards;
 
-    public Player() {
+    public Player(DeckOfCards deckOfCards) {
         this.deck = new ArrayList<>();
+        this.deckOfCards = deckOfCards;
     }
 
-    //players draw cards
+    //players draw cards - 6 each
     public void drawCard(int numberOfCards) {
         deck.addAll(deckOfCards.drawCard(numberOfCards));
+        deckOfCards.addCards();
     }
 
     //player shows lowest card to decide who attacks first
@@ -34,22 +36,34 @@ public class Player {
     public Card showLowestCard(Card trumpCard) {
         List<Card> cards = new ArrayList<>();
         Card tempCard = null;
-
+        System.out.println("The number of deck cards: " + deck.size());
+        //iterate through players cards - 6
         for (Card card : deck) {
             if (card.suit.equals(trumpCard.suit)) {
                 cards.add(card);
             }
         }
+        System.out.println("The number of trumpCard cards: " + cards.size());
         cards = cards.isEmpty() ? deck : cards;
+
+        if (cards.size() == 1) {
+            tempCard = cards.getFirst();
+        }
 
         for (int i = 0; i < cards.size() - 1; i++) {
             tempCard = compareRanks(cards.get(i), cards.get(i++));
         }
+
+        System.out.println("The number of last cards: " + cards.size());
         return tempCard;
     }
 
     //compare ranks when attacking
     public Card compareRanks(Card first, Card next) {
+        if (next == null) { //in case where we have only 1 trump card not 2
+            return first;
+        }
+
         if (first.rank > next.rank) {
             return first;
         }
