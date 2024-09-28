@@ -15,6 +15,10 @@ public class Card {
         this.isTrump = false;
     }
 
+    public Integer getRank() {
+        return rank;
+    }
+
     @Override
     public String toString() {
         return "Card{" +

@@ -1,7 +1,5 @@
 package task1_two_human_players_20_cards;
 
-import java.util.List;
-
 public class FoolDemo {
     public static void main(String[] args) {
         DeckOfCards card = new DeckOfCards();
@@ -21,12 +19,15 @@ public class FoolDemo {
         player1.drawCard(6);
         player2.drawCard(6);
 
-        Card player1LowestCard = player1.showLowestCard(trumpCard);
-        player2.showLowestCard(trumpCard);
+        Card player1LowestCard = player1.getLowestCard(trumpCard);
+        Card player2LowestCard = player2.getLowestCard(trumpCard);
+        player1.getLowestCard(trumpCard);
+        player2.getLowestCard(trumpCard);
 
         player1.printDeckOfCards();
         System.out.println("Player1 lowest card is " + player1LowestCard.suit + " " + player1LowestCard.rank);
 
+        //now we have cards and we can do wat we need with those 2 cards
 
     }
 }

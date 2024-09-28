@@ -1,6 +1,8 @@
 package task1_two_human_players_20_cards;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Player {
@@ -33,7 +35,7 @@ public class Player {
     //iterate through the list
     //use a trump card as a parameter
     //ignore all the cards that are not trump
-    public Card showLowestCard(Card trumpCard) {
+    public Card getLowestCard(Card trumpCard) {
         List<Card> cards = new ArrayList<>();
         Card tempCard = null;
         System.out.println("The number of deck cards: " + deck.size());
@@ -50,24 +52,14 @@ public class Player {
             tempCard = cards.getFirst();
         }
 
-        for (int i = 0; i < cards.size() - 1; i++) {
-            tempCard = compareRanks(cards.get(i), cards.get(i++));
-        }
+//        tempCard.rank = cards.getFirst().rank;
+//        for (int i = 1; i < cards.size(); i++) {
+//           if (cards.get(i).rank< tempCard.rank) {
+//              tempCard.rank = cards.get(i).rank;
+//           }
+//        }
 
-        System.out.println("The number of last cards: " + cards.size());
-        return tempCard;
-    }
-
-    //compare ranks when attacking
-    public Card compareRanks(Card first, Card next) {
-        if (next == null) { //in case where we have only 1 trump card not 2
-            return first;
-        }
-
-        if (first.rank > next.rank) {
-            return first;
-        }
-        return next;
+        return Collections.min(cards, Comparator.comparingInt(Card::getRank));
     }
 
 
@@ -78,7 +70,6 @@ public class Player {
             System.out.println("The card suit is: " + card.suit + "\nThe card rank is: " + card.rank);
         }
     }
-
 
     //attack and remove
     public void attack() {
