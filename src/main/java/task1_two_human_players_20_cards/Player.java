@@ -15,7 +15,7 @@ public class Player {
     //      showLowestCard +
     //      compareRanks +
     //      attack
-    //      defend
+    //      defend +
 
     List<Card> deck;
     DeckOfCards deckOfCards;
