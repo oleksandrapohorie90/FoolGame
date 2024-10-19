@@ -9,7 +9,8 @@ public class Player {
     //Player
     //	Attributes
     //		deck
-    //
+    //      turn
+
     //	Methods
     //		drawCard +
     //      showLowestCard +
@@ -18,11 +19,14 @@ public class Player {
     //      defend +
 
     List<Card> deck;
+    boolean turn;
     DeckOfCards deckOfCards;
+    String name;
 
-    public Player(DeckOfCards deckOfCards) {
+    public Player(DeckOfCards deckOfCards, String name) {
         this.deck = new ArrayList<>();
         this.deckOfCards = deckOfCards;
+        this.name = name;
     }
 
     //players draw cards - 6 each
@@ -31,7 +35,7 @@ public class Player {
         deckOfCards.addCards();
     }
 
-    //player shows lowest card to decide who attacks first
+    //player gets lowest card to decide who attacks first
     //iterate through the list
     //use a trump card as a parameter
     //ignore all the cards that are not trump
@@ -72,15 +76,32 @@ public class Player {
     }
 
     //attack and remove
-    public void attack() {
+    public Card getAttackingCard() {
         if (deck.isEmpty()) {
             System.out.println("Your deck is empty");
-        } else {
-            deck.removeFirst(); //?
+            return null;
         }
+        return deck.removeFirst(); //this will allow to make a turn with first card
+
     }
 
-    public void defend() {
+    public boolean getDefendingCard(Card attackingCard) {
+        if (deck.isEmpty()) {
+            System.out.println("Your deck is empty");
+            return false;
+        }
+        boolean status = false;
+        for (int i = 0; i <deck.size() ; i++) {
+            if(deck.get(i).rank > attackingCard.rank){
+                deck.remove(i);
+                status = true;
+            } else {
+                deck.add(attackingCard);
+                status = false;
+            }
+        }
+
+        return status;
 
     }
 
