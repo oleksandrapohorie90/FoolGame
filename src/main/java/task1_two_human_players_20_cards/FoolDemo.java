@@ -14,7 +14,7 @@ public class FoolDemo {
         player2 = new Player(cards, "Estuardo");
 
 
-//        cards.chooseTrumpCard();
+        //cards.chooseTrumpCard();
         //cards.printDeckOfCards();
 //
 //        player1.deck = cards.drawCard(6);
