@@ -39,7 +39,6 @@ public class FoolDemo {
         player2.printDeckOfCards();
         System.out.println("Player one turn is " + player1.turn);
         System.out.println("Player two turn is " + player2.turn);
-
         play(player1, player2);
 
     }
@@ -58,12 +57,19 @@ public class FoolDemo {
         if (attackingPlayer.turn) {
             player1AttackingCard = attackingPlayer.getAttackingCard();
             player2Status = defendingPlayer.getDefendingCard(player1AttackingCard);
+            //playerStatus means if you are able to defend then the status var will be true
             if (player2Status) {
                 System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " defended successfully!");
                 attackingPlayer.turn = false;
+                System.out.println("defendingPlayer has: "+defendingPlayer.deckOfCardsOnHand.size()+" cards now and attackingPlayer has "+attackingPlayer.deckOfCardsOnHand.size()+" cards.");
+//                player1.drawCard(1);
+//                player2.drawCard(1);
             } else {
                 System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " couldn't defended successfully, so he took the card in and lost his turn!");
                 attackingPlayer.turn = true;
+                defendingPlayer.deckOfCardsOnHand.add(player1AttackingCard); //unable to defend and take the card in
+                attackingPlayer.drawCard(1); //draw more cards from gen deck and its attacking player turn again
+                System.out.println("defendingPlayer has: "+defendingPlayer.deckOfCardsOnHand.size()+" cards now.");
             }
         }
 

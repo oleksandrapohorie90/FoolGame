@@ -18,21 +18,20 @@ public class Player {
     //      attack
     //      defend +
 
-    List<Card> deck;
+    List<Card> deckOfCardsOnHand;
     boolean turn;
-    DeckOfCards deckOfCards;
+    DeckOfCards deckOfCardsMain;
     String name;
 
-    public Player(DeckOfCards deckOfCards, String name) {
-        this.deck = new ArrayList<>();
-        this.deckOfCards = deckOfCards;
+    public Player(DeckOfCards deckOfCardsMain, String name) {
+        this.deckOfCardsOnHand = new ArrayList<>();
+        this.deckOfCardsMain = deckOfCardsMain;
         this.name = name;
     }
 
     //players draw cards - 6 each
     public void drawCard(int numberOfCards) {
-        deck.addAll(deckOfCards.drawCard(numberOfCards));
-        deckOfCards.addCards();
+        deckOfCardsOnHand.addAll(deckOfCardsMain.drawCard(numberOfCards));
     }
 
     //player gets lowest card to decide who attacks first
@@ -42,15 +41,15 @@ public class Player {
     public Card getLowestCard(Card trumpCard) {
         List<Card> cards = new ArrayList<>();
         Card tempCard = null;
-        System.out.println("The number of deck cards: " + deck.size());
+        System.out.println("The number of deck cards: " + deckOfCardsOnHand.size());
         //iterate through players cards - 6
-        for (Card card : deck) {
+        for (Card card : deckOfCardsOnHand) {
             if (card.suit.equals(trumpCard.suit)) {
                 cards.add(card);
             }
         }
         System.out.println("The number of trumpCard cards: " + cards.size());
-        cards = cards.isEmpty() ? deck : cards;
+        cards = cards.isEmpty() ? deckOfCardsOnHand : cards;
 
         if (cards.size() == 1) {
             tempCard = cards.getFirst();
@@ -69,34 +68,34 @@ public class Player {
 
     //print the deckOfCards
     public void printDeckOfCards() {
-        System.out.println("The deck has: " + deck.size() + " cards");
-        for (Card card : deck) {
+        System.out.println("The deck has: " + deckOfCardsOnHand.size() + " cards");
+        for (Card card : deckOfCardsOnHand) {
             System.out.println("The card suit is: " + card.suit + "\nThe card rank is: " + card.rank);
         }
     }
 
     //attack and remove
     public Card getAttackingCard() {
-        if (deck.isEmpty()) {
+        if (deckOfCardsOnHand.isEmpty()) {
             System.out.println("Your deck is empty");
             return null;
         }
-        return deck.removeFirst(); //this will allow to make a turn with first card
+        return deckOfCardsOnHand.removeFirst(); //this will allow to make a turn with first card
 
     }
 
     public boolean getDefendingCard(Card attackingCard) {
-        if (deck.isEmpty()) {
+        if (deckOfCardsOnHand.isEmpty()) {
             System.out.println("Your deck is empty");
             return false;
         }
         boolean status = false;
-        for (int i = 0; i <deck.size() ; i++) {
-            if(deck.get(i).rank > attackingCard.rank){
-                deck.remove(i);
+        for (int i = 0; i < deckOfCardsOnHand.size() ; i++) {
+            if(deckOfCardsOnHand.get(i).rank > attackingCard.rank){
+                deckOfCardsOnHand.remove(i);
                 status = true;
             } else {
-                deck.add(attackingCard);
+                deckOfCardsOnHand.add(attackingCard);
                 status = false;
             }
         }
