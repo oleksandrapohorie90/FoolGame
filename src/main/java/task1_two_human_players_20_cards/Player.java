@@ -91,15 +91,16 @@ public class Player {
         }
         boolean status = false;
         for (int i = 0; i < deckOfCardsOnHand.size() ; i++) {
-            if(deckOfCardsOnHand.get(i).rank > attackingCard.rank){
+            System.out.println("The rank of attacking card"+attackingCard.rank+" the rank of defending card "+deckOfCardsOnHand.get(i).rank);
+            if(deckOfCardsOnHand.get(i).rank > attackingCard.rank){ //I was able to defend
                 deckOfCardsOnHand.remove(i);
                 status = true;
-            } else {
-                deckOfCardsOnHand.add(attackingCard);
-                status = false;
+                break;
             }
         }
-
+        if (!status) {
+            deckOfCardsOnHand.add(attackingCard); // only add if no defense is possible
+        }
         return status;
 
     }

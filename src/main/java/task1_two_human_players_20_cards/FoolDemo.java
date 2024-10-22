@@ -4,12 +4,12 @@ public class FoolDemo {
     static Player player1;
     static Player player2;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         DeckOfCards cards = new DeckOfCards();
         Card trumpCard = new Card("Hearts", 6);
 
         //deck thats used for both players and add cards
-        cards.addCards();
+
         player1 = new Player(cards, "Alex");
         player2 = new Player(cards, "Estuardo");
 
@@ -41,6 +41,14 @@ public class FoolDemo {
         System.out.println("Player two turn is " + player2.turn);
         play(player1, player2);
 
+        //to check when the deck is empty
+        while (!cards.cards.isEmpty()){
+            Thread.sleep(1000);
+            play(player1, player2);
+            System.out.println("Cards amount is "+cards.cards.size());
+        }
+        System.out.println("The game is over, the deck is empty!");
+
     }
 
     //will move to another Class - line 22, 23
@@ -62,12 +70,11 @@ public class FoolDemo {
                 System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " defended successfully!");
                 attackingPlayer.turn = false;
                 System.out.println("defendingPlayer has: "+defendingPlayer.deckOfCardsOnHand.size()+" cards now and attackingPlayer has "+attackingPlayer.deckOfCardsOnHand.size()+" cards.");
-//                player1.drawCard(1);
-//                player2.drawCard(1);
+                player1.drawCard(1);
+                player2.drawCard(1);
             } else {
                 System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " couldn't defended successfully, so he took the card in and lost his turn!");
                 attackingPlayer.turn = true;
-                defendingPlayer.deckOfCardsOnHand.add(player1AttackingCard); //unable to defend and take the card in
                 attackingPlayer.drawCard(1); //draw more cards from gen deck and its attacking player turn again
                 System.out.println("defendingPlayer has: "+defendingPlayer.deckOfCardsOnHand.size()+" cards now.");
             }

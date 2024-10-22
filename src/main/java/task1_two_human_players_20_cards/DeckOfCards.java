@@ -5,8 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class DeckOfCards {
-
-    //maybe use Map, no need to create a Card class ?
+    //main deck of cards
     List<Card> cards;
     Card trumpCard;
     String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
@@ -14,6 +13,7 @@ public class DeckOfCards {
 
     public DeckOfCards() {
         this.cards = new ArrayList<>();
+        addCards();
     }
 
     //print the deckOfCards
@@ -52,12 +52,13 @@ public class DeckOfCards {
     //to draw the card and add it to the players deck
     public List<Card> drawCard(int amountOfCards) {
         List<Card> playerDeckOfCards = new ArrayList<>();
-        if (!cards.isEmpty()) {
             for (int i = 0; i < amountOfCards; i++) {
+                if(cards.isEmpty()){
+                    break;
+                }
                 playerDeckOfCards.add(cards.getLast());
                 cards.remove(cards.getLast());
             }
-        }
         return playerDeckOfCards;
     }
 
