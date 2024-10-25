@@ -44,11 +44,13 @@ public class FoolDemo {
         //play(player1, player2);
 
         //to check when the deck is empty, cards is the main deck of cards, 20 in the beginning, then 8(6 for each player)
+        System.out.println("=================The deck is not empty======================");
         while (!cards.cards.isEmpty()) {
             Thread.sleep(1000);
             play(player1, player2);
             System.out.println("Cards amount is " + cards.cards.size());
         }
+        System.out.println("===============Now The Main deck is empty=====================");
         while (!player1.deckOfCardsOnHand.isEmpty() || !player2.deckOfCardsOnHand.isEmpty()) {
             Thread.sleep(1000);
             play(player1, player2);
@@ -56,8 +58,10 @@ public class FoolDemo {
         }
         if (player1.deckOfCardsOnHand.size() > player2.deckOfCardsOnHand.size()) {
             System.out.println(player1.name + " has lost the game and is a FOOL!");
-        } else {
+        } else if (player1.deckOfCardsOnHand.size() < player2.deckOfCardsOnHand.size()) {
             System.out.println(player2.name + " has lost the game and is a FOOL!");
+        } else {
+            System.out.println("There is no FOOL, the game ended even!");
         }
         System.out.println("The game is over, the deck is empty!");
 
