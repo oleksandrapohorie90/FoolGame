@@ -85,14 +85,10 @@ public class Player {
     }
 
     public boolean getDefendingCard(Card attackingCard) {
-        if (deckOfCardsOnHand.isEmpty()) {
-            System.out.println("Your deck is empty");
-            return false;
-        }
         boolean status = false;
-        for (int i = 0; i < deckOfCardsOnHand.size() ; i++) {
-            System.out.println("The rank of attacking card"+attackingCard.rank+" the rank of defending card "+deckOfCardsOnHand.get(i).rank);
-            if(deckOfCardsOnHand.get(i).rank > attackingCard.rank){ //I was able to defend
+        for (int i = 0; i < deckOfCardsOnHand.size(); i++) {
+            //System.out.println("The rank of attacking card" + attackingCard.rank + " the rank of defending card " + deckOfCardsOnHand.get(i).rank);
+            if (deckOfCardsOnHand.get(i).rank > attackingCard.rank) { //I was able to defend
                 deckOfCardsOnHand.remove(i);
                 status = true;
                 break;

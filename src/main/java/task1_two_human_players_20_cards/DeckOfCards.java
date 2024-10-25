@@ -14,6 +14,7 @@ public class DeckOfCards {
     public DeckOfCards() {
         this.cards = new ArrayList<>();
         addCards();
+        System.out.println("The amount of cards in the main deck is: " + cards.size());
     }
 
     //print the deckOfCards
@@ -52,19 +53,15 @@ public class DeckOfCards {
     //to draw the card and add it to the players deck
     public List<Card> drawCard(int amountOfCards) {
         List<Card> playerDeckOfCards = new ArrayList<>();
-            for (int i = 0; i < amountOfCards; i++) {
-                if(cards.isEmpty()){
-                    break;
-                }
-                playerDeckOfCards.add(cards.getLast());
-                cards.remove(cards.getLast());
+        for (int i = 0; i < amountOfCards; i++) {
+            if (cards.isEmpty()) {
+                break;
             }
+            playerDeckOfCards.add(cards.getLast());
+            cards.remove(cards.getLast());
+        }
         return playerDeckOfCards;
     }
-
-
-
-
 
 
 }
