@@ -3,27 +3,25 @@ package task1_two_human_players_20_cards;
 public class FoolDemo {
     static Player player1;
     static Player player2;
-
+    static DeckOfCards cards;
     public static void main(String[] args) throws InterruptedException {
-        DeckOfCards cards = new DeckOfCards();
-        Card trumpCard = new Card("Hearts", 6);
+        cards = new DeckOfCards();
 
         //deck thats used for both players and add cards
-
         player1 = new Player(cards, "Alex");
         player2 = new Player(cards, "Estuardo");
 
 
-        //cards.chooseTrumpCard();
+         cards.chooseTrumpCard();
         //cards.printDeckOfCards();
-//
+
 //        player1.deck = cards.drawCard(6);
 //        player1.printDeckOfCards();
         player1.drawCard(6);
         player2.drawCard(6);
 
-        Card player1LowestCard = player1.getLowestCard(trumpCard);
-        Card player2LowestCard = player2.getLowestCard(trumpCard);
+        Card player1LowestCard = player1.getLowestCard(cards.trumpCard);
+        Card player2LowestCard = player2.getLowestCard(cards.trumpCard);
 
         //assign turns from getPlayer1Turn()
         player1.turn = getPlayer1Turn(player1LowestCard, player2LowestCard);
@@ -51,7 +49,7 @@ public class FoolDemo {
             System.out.println("Cards amount is " + cards.cards.size());
         }
         System.out.println("===============Now The Main deck is empty=====================");
-        while (!player1.deckOfCardsOnHand.isEmpty() || !player2.deckOfCardsOnHand.isEmpty()) {
+        while (!player1.deckOfCardsOnHand.isEmpty() && !player2.deckOfCardsOnHand.isEmpty()) {
             Thread.sleep(1000);
             play(player1, player2);
             System.out.println("Cards on hand amount for " + player1.name + " is " + player1.deckOfCardsOnHand.size() + " | Cards on hand amount for " + player2.name + " is " + player2.deckOfCardsOnHand.size());
@@ -67,9 +65,16 @@ public class FoolDemo {
 
     }
 
-    //will move to another Class - line 22, 23
+    //TODO: move to another Class - line 22, 23
     public static boolean getPlayer1Turn(Card player1Card, Card player2Card) {
-        return player1Card.rank < player2Card.rank;
+        if(!player1Card.suit.equals(cards.trumpCard.suit) && player2Card.suit.equals(cards.trumpCard.suit)){
+            return false; //we know that player 1 doesnt have the trump card but player 2 has it, we return false for turn on player1
+        } else if (player1Card.suit.equals(cards.trumpCard.suit) && !player2Card.suit.equals(cards.trumpCard.suit)) {
+            return true;
+        } else { //in case when both of us have trump cards or none of us has trump cards
+            return player1Card.rank < player2Card.rank;
+        }
+
     }
 
     public static void play(Player player1, Player player2) {

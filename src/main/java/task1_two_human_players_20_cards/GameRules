@@ -1,16 +1,16 @@
 Rules of the card game "Durak"="Fool":
 ===============================================
 Deck:
-The game is played with a deck of 36 cards (from sixes to aces). It can be played by 2 to 6 people.
++ The game is played with a deck of 36 cards (from sixes to aces). It can be played by 2 to 6 people.
 
 Goal of the game:
-The objective is to avoid being the "Durak" (fool), meaning not to be the last player left with cards. The game ends when all players, except one, have discarded all their cards.
++ The objective is to avoid being the "Durak" (fool), meaning not to be the last player left with cards. The game ends when all players, except one, have discarded all their cards.
 
 Dealing:
-Each player is dealt 6 cards. One card from the deck is placed face up — this is the trump card. The rest of the deck is placed face down on top of the trump card.
++ Each player is dealt 6 cards. One card from the deck is placed face up — this is the trump card. The rest of the deck is placed face down on top of the trump card.
 
 Start of the game:
-The player with the lowest card of the trump suit goes first (if no trump cards are dealt, the player with the lowest card of any other suit starts). Players may play one or more cards of the same suit.
+- The player with the lowest card of the trump suit goes first (if no trump cards are dealt, the player with the lowest card of any other suit starts). Players may play one or more cards of the same suit.
 
 Turn:
 The attacking player chooses one card (or more if the cards are of the same rank). The defending player must "beat" the card. Cards are beaten either by a higher card of the same suit or by a trump card (trump cards can beat any non-trump card unless it’s a stronger trump).

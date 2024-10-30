@@ -40,28 +40,17 @@ public class Player {
     //ignore all the cards that are not trump
     public Card getLowestCard(Card trumpCard) {
         List<Card> cards = new ArrayList<>();
-        Card tempCard = null;
         System.out.println("The number of deck cards: " + deckOfCardsOnHand.size());
         //iterate through players cards - 6
         for (Card card : deckOfCardsOnHand) {
             if (card.suit.equals(trumpCard.suit)) {
-                cards.add(card);
+                cards.add(card); //only trump cards
             }
         }
         System.out.println("The number of trumpCard cards: " + cards.size());
         cards = cards.isEmpty() ? deckOfCardsOnHand : cards;
 
-        if (cards.size() == 1) {
-            tempCard = cards.getFirst();
-        }
-
-//        tempCard.rank = cards.getFirst().rank;
-//        for (int i = 1; i < cards.size(); i++) {
-//           if (cards.get(i).rank< tempCard.rank) {
-//              tempCard.rank = cards.get(i).rank;
-//           }
-//        }
-
+        //search for the lowest trump card if any was added to the cards list, to get the minimum value from the list
         return Collections.min(cards, Comparator.comparingInt(Card::getRank));
     }
 
@@ -83,7 +72,7 @@ public class Player {
         return deckOfCardsOnHand.removeFirst(); //this will allow to make a turn with first card
 
     }
-
+//TODO: compare suits
     public boolean getDefendingCard(Card attackingCard) {
         boolean status = false;
         for (int i = 0; i < deckOfCardsOnHand.size(); i++) {
