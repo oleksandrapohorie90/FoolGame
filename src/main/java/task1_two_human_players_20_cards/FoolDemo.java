@@ -1,18 +1,21 @@
 package task1_two_human_players_20_cards;
 
 public class FoolDemo {
+
     static Player player1;
     static Player player2;
     static DeckOfCards cards;
+
+
     public static void main(String[] args) throws InterruptedException {
         cards = new DeckOfCards();
 
+        //to select trump cards before creating players
+        cards.chooseTrumpCard();
         //deck thats used for both players and add cards
         player1 = new Player(cards, "Alex");
         player2 = new Player(cards, "Estuardo");
 
-
-         cards.chooseTrumpCard();
         //cards.printDeckOfCards();
 
 //        player1.deck = cards.drawCard(6);
@@ -20,8 +23,8 @@ public class FoolDemo {
         player1.drawCard(6);
         player2.drawCard(6);
 
-        Card player1LowestCard = player1.getLowestCard(cards.trumpCard);
-        Card player2LowestCard = player2.getLowestCard(cards.trumpCard);
+        Card player1LowestCard = player1.getLowestCard();
+        Card player2LowestCard = player2.getLowestCard();
 
         //assign turns from getPlayer1Turn()
         player1.turn = getPlayer1Turn(player1LowestCard, player2LowestCard);
@@ -30,23 +33,19 @@ public class FoolDemo {
 //        player1.getLowestCard(trumpCard);
 //        player2.getLowestCard(trumpCard);
 
-
         player1.printDeckOfCards();
-        System.out.println("Player1 lowest cards is " + player1LowestCard.suit + " " + player1LowestCard.rank);
+        //System.out.println("Player1 lowest cards is " + player1LowestCard.suit + " " + player1LowestCard.rank);
 
         player2.printDeckOfCards();
-        System.out.println("Player one turn is " + player1.turn);
-        System.out.println("Player two turn is " + player2.turn);
-        //play(player1, player2);
-        //play(player1, player2);
-        //play(player1, player2);
+        System.out.println("This is " + player1.name + " turn " + player1.turn);
+        System.out.println("This is " + player2.name + " turn " + player2.turn);
 
         //to check when the deck is empty, cards is the main deck of cards, 20 in the beginning, then 8(6 for each player)
         System.out.println("=================The deck is not empty======================");
         while (!cards.cards.isEmpty()) {
             Thread.sleep(1000);
             play(player1, player2);
-            System.out.println("Cards amount is " + cards.cards.size());
+            System.out.println("Cards amount in the deck is " + cards.cards.size());
         }
         System.out.println("===============Now The Main deck is empty=====================");
         while (!player1.deckOfCardsOnHand.isEmpty() && !player2.deckOfCardsOnHand.isEmpty()) {
@@ -67,7 +66,7 @@ public class FoolDemo {
 
     //TODO: move to another Class - line 22, 23
     public static boolean getPlayer1Turn(Card player1Card, Card player2Card) {
-        if(!player1Card.suit.equals(cards.trumpCard.suit) && player2Card.suit.equals(cards.trumpCard.suit)){
+        if (!player1Card.suit.equals(cards.trumpCard.suit) && player2Card.suit.equals(cards.trumpCard.suit)) {
             return false; //we know that player 1 doesnt have the trump card but player 2 has it, we return false for turn on player1
         } else if (player1Card.suit.equals(cards.trumpCard.suit) && !player2Card.suit.equals(cards.trumpCard.suit)) {
             return true;
@@ -98,8 +97,8 @@ public class FoolDemo {
                 System.out.println(player1.name + " did the turn and " + player2.name + " couldn't defended successfully, so he took the card in and lost his turn!");
                 player1.turn = true; //we need to keep the turns values accurate, player1 turn remains true
                 player2.turn = false; //player2 turn remain false
-                player1.drawCard(1); //draw more cards from gen deck and its attacking player turn again
                 System.out.println("defendingPlayer has: " + player2.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + player1.deckOfCardsOnHand.size());
+                player1.drawCard(1); //draw more cards from gen deck and its attacking player turn again
             }
         } else {
             player1AttackingCard = player2.getAttackingCard();
