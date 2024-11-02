@@ -81,12 +81,11 @@ public class Player {
         }
 
         return deckOfCardsOnHand.removeFirst(); //this will allow to make a turn with first card
-
     }
 
     public boolean getDefendingCard(Card attackingCard) {
         boolean status = false; //this will show whose turn it is
-        //List<Card> cards = getTrumpCards();
+        //List<Card> cards = getTrumpCards(); -> we were removing a card from temporary list but we need to remove from deck of cards on hand
 
         //Im checking the attacker card if its trump and Im checking the defender cards if there is any trump
         if (attackingCard.suit.equals(deckOfCardsMain.trumpCard.suit) && hasTrumpCards()) {
@@ -99,30 +98,38 @@ public class Player {
                 }
                 //if my trump card rank is lower - I still take the card
             }
-        } else if (!attackingCard.suit.equals(deckOfCardsMain.trumpCard.suit) && hasTrumpCards()) {
+        } else if (!attackingCard.suit.equals(deckOfCardsMain.trumpCard.suit)) {
             //Im checking if I have any card that is matching the suit of attacking card and is higher in rank then that, if there is any then I keep my trumpCard for later, if not then I have to use my trumpCard to beat attacking card
             for (int i = 0; i < deckOfCardsOnHand.size(); i++) {
-                //In this case it will only compare the 1st cards rank, not go through all of the cards ranks
                 if ((deckOfCardsOnHand.get(i).suit.equals(attackingCard.suit)) && (deckOfCardsOnHand.get(i).rank > attackingCard.rank)) {
                     deckOfCardsOnHand.remove(i);
-                    status = true; // I was able to defend
+                    status = true; // I was able to defend and kept my trump card since I have the same suit card and it has a higher rank
                     break;
-                } else {//now I need to use my trump card, it may remove the trump card or it may remove not the trump one
-                    deckOfCardsOnHand.remove(i);
-                    status = true; // I was able to defend
-                    break;
+                } else {
+                    for (int j = 0; j < deckOfCardsOnHand.size(); j++) {
+                        if(deckOfCardsOnHand.get(j).suit.equals(deckOfCardsMain.trumpCard.suit)){
+                            //now I need to use my trump card, it may remove the trump card or it may remove not the trump one, so I need to check for trump only
+                            deckOfCardsOnHand.remove(j);
+                            status = true; // I was able to defend
+                            break;
+                        }
+                    }
                 }
+                //the 3rd condition is I neither have the matching suite in higher rank or I don't have a trump card to defend
             }
-        } else {
-            for (int i = 0; i < deckOfCardsOnHand.size(); i++) {
-                if (deckOfCardsOnHand.get(i).rank > attackingCard.rank) { //I was able to defend
-                    deckOfCardsOnHand.remove(i);
-                    status = true;
-                    break;
-                }
-            }
+      }
+        //else {
+//            for (int i = 0; i < deckOfCardsOnHand.size(); i++) {
+//                if (deckOfCardsOnHand.get(i).rank > attackingCard.rank) { //I was able to defend
+//                    deckOfCardsOnHand.remove(i);
+//                    status = true;
+//                    break;
+//                }else{
+//                    System.out.println("Else 2");
+//                }
+//            }
+//        }
 
-        }
         if (!status) {
             deckOfCardsOnHand.add(attackingCard); // only add if no defense is possible
         }

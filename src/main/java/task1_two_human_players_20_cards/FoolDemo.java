@@ -17,9 +17,6 @@ public class FoolDemo {
         player2 = new Player(cards, "Estuardo");
 
         //cards.printDeckOfCards();
-
-//        player1.deck = cards.drawCard(6);
-//        player1.printDeckOfCards();
         player1.drawCard(6);
         player2.drawCard(6);
 
@@ -34,8 +31,6 @@ public class FoolDemo {
 //        player2.getLowestCard(trumpCard);
 
         player1.printDeckOfCards();
-        //System.out.println("Player1 lowest cards is " + player1LowestCard.suit + " " + player1LowestCard.rank);
-
         player2.printDeckOfCards();
         System.out.println("This is " + player1.name + " turn " + player1.turn);
         System.out.println("This is " + player2.name + " turn " + player2.turn);
@@ -51,7 +46,6 @@ public class FoolDemo {
         while (!player1.deckOfCardsOnHand.isEmpty() && !player2.deckOfCardsOnHand.isEmpty()) {
             Thread.sleep(1000);
             play(player1, player2);
-            System.out.println("Cards on hand amount for " + player1.name + " is " + player1.deckOfCardsOnHand.size() + " | Cards on hand amount for " + player2.name + " is " + player2.deckOfCardsOnHand.size());
         }
         if (player1.deckOfCardsOnHand.size() > player2.deckOfCardsOnHand.size()) {
             System.out.println(player1.name + " has lost the game and is a FOOL!");
@@ -73,14 +67,13 @@ public class FoolDemo {
         } else { //in case when both of us have trump cards or none of us has trump cards
             return player1Card.rank < player2Card.rank;
         }
-
     }
 
     public static void play(Player player1, Player player2) {
         Card player1AttackingCard;
         boolean player2Status;
         //if player1 turn is true then player1 is attacking player
-        //if player1 turn is true, then player2 is the defending player
+        //if player1 turn is false, then player2 is the defending player
 
         if (player1.turn) {
             player1AttackingCard = player1.getAttackingCard();
@@ -90,14 +83,12 @@ public class FoolDemo {
                 System.out.println(player1.name + " did the turn and " + player2.name + " defended successfully!");
                 player1.turn = false;
                 player2.turn = true;
-                System.out.println("defendingPlayer has: " + player2.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + player1.deckOfCardsOnHand.size() + " cards.");
                 player1.drawCard(1);
                 player2.drawCard(1);
             } else {
-                System.out.println(player1.name + " did the turn and " + player2.name + " couldn't defended successfully, so he took the card in and lost his turn!");
                 player1.turn = true; //we need to keep the turns values accurate, player1 turn remains true
                 player2.turn = false; //player2 turn remain false
-                System.out.println("defendingPlayer has: " + player2.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + player1.deckOfCardsOnHand.size());
+                System.out.println("Cards on hand amount for " + player1.name + " is " + player1.deckOfCardsOnHand.size() + " | Cards on hand amount for " + player2.name + " is " + player2.deckOfCardsOnHand.size());
                 player1.drawCard(1); //draw more cards from gen deck and its attacking player turn again
             }
         } else {
@@ -108,7 +99,6 @@ public class FoolDemo {
                 System.out.println(player2.name + " did the turn and " + player1.name + " defended successfully!");
                 player2.turn = false;
                 player1.turn = true;
-                System.out.println("defendingPlayer has: " + player1.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + player2.deckOfCardsOnHand.size() + " cards.");
                 player2.drawCard(1);
                 player1.drawCard(1);
             } else {
@@ -116,10 +106,9 @@ public class FoolDemo {
                 player2.turn = true; //we need to keep the turns values accurate, player2 turn remains true
                 player1.turn = false; //player1 turn remain false
                 player2.drawCard(1); //draw more cards from gen deck and its attacking player turn again
-                System.out.println("defendingPlayer has: " + player1.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + player2.deckOfCardsOnHand.size() + " cards.");
             }
         }
 
-
+        System.out.println("Cards on hand amount for " + player1.name + " is " + player1.deckOfCardsOnHand.size() + " | Cards on hand amount for " + player2.name + " is " + player2.deckOfCardsOnHand.size());
     }
 }
