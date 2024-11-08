@@ -1,7 +1,9 @@
 package task2_six_human_players_36_cards;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FoolDemo {
 
@@ -19,7 +21,7 @@ public class FoolDemo {
 
 //        players.add(new Player(cards, "Alex"));
 //        players.add(new Player(cards, "Estuardo"));
-        assignPlayers(2);
+        assignPlayers(6);
         //cards.printDeckOfCards();
 
 //        player1.deck = cards.drawCard(6);
@@ -31,7 +33,8 @@ public class FoolDemo {
         Card player2LowestCard = players.get(1).getLowestCard();
 
         //assign turns from getPlayer1Turn()
-        players.get(0).turn = getPlayer1Turn(player1LowestCard, player2LowestCard);
+        //TODO: this line will be deleted, the getPlayer1Turn() parameters have changed ->
+        // players.get(0).turn = getPlayer1Turn(player1LowestCard, player2LowestCard);
         players.get(1).turn = !players.get(0).turn;
 
 //        player1.getLowestCard(trumpCard);
@@ -69,15 +72,26 @@ public class FoolDemo {
     }
 
     //TODO: move to another Class - line 22, 23
-    public static boolean getPlayer1Turn(Card player1Card, Card player2Card) {
-        if (!player1Card.suit.equals(cards.trumpCard.suit) && player2Card.suit.equals(cards.trumpCard.suit)) {
-            return false; //we know that player 1 doesnt have the trump card but player 2 has it, we return false for turn on player1
-        } else if (player1Card.suit.equals(cards.trumpCard.suit) && !player2Card.suit.equals(cards.trumpCard.suit)) {
-            return true;
-        } else { //in case when both of us have trump cards or none of us has trump cards
-            return player1Card.rank < player2Card.rank;
+    public static boolean getPlayer1Turn(List<Player> players) {
+        Map<Player, Card> playersWithLowestCard = new HashMap<>();
+
+        //at this point we get the lowest(trump or any card) of each Player and assign them to the map, bc we need to know the names
+        for (int i = 0; i < players.size(); i++) {
+            playersWithLowestCard.put(players.get(i), players.get(i).getLowestCard());
         }
 
+        //now will have to get the lowest card and then we will know the Player
+        //we want to return not boolean but Player
+        //TODO: Remember to delete below, it wont be used!
+
+//        if (!player1Card.suit.equals(cards.trumpCard.suit) && player2Card.suit.equals(cards.trumpCard.suit)) {
+//            return false; //we know that player 1 doesnt have the trump card but player 2 has it, we return false for turn on player1
+//        } else if (player1Card.suit.equals(cards.trumpCard.suit) && !player2Card.suit.equals(cards.trumpCard.suit)) {
+//            return true;
+//        } else { //in case when both of us have trump cards or none of us has trump cards
+//            return player1Card.rank < player2Card.rank;
+//        }
+return false;
     }
 
     //this method allows to assign name and cards to each Player
@@ -89,6 +103,7 @@ public class FoolDemo {
         }
 
     }
+
     public static void play(Player player1, Player player2) {
         Card player1AttackingCard;
         boolean player2Status;
