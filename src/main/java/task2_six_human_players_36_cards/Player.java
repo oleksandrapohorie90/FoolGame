@@ -18,6 +18,9 @@ public class Player {
     //      attack
     //      defend +
 
+    //instead of using 2 objects use a list of 2 Players
+
+
     List<Card> deckOfCardsOnHand;
     boolean turn;
     DeckOfCards deckOfCardsMain;

@@ -1,9 +1,11 @@
 package task2_six_human_players_36_cards;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FoolDemo {
 
-    static Player player1;
-    static Player player2;
+    static List<Player> players = new ArrayList<>();
     static DeckOfCards cards;
 
 
@@ -12,51 +14,53 @@ public class FoolDemo {
 
         //to select trump cards before creating players
         cards.chooseTrumpCard();
-        //deck thats used for both players and add cards
-        player1 = new Player(cards, "Alex");
-        player2 = new Player(cards, "Estuardo");
 
+        //deck thats used for both players and add cards
+
+//        players.add(new Player(cards, "Alex"));
+//        players.add(new Player(cards, "Estuardo"));
+        assignPlayers(2);
         //cards.printDeckOfCards();
 
 //        player1.deck = cards.drawCard(6);
 //        player1.printDeckOfCards();
-        player1.drawCard(6);
-        player2.drawCard(6);
+        players.get(0).drawCard(6);
+        players.get(1).drawCard(6);
 
-        Card player1LowestCard = player1.getLowestCard();
-        Card player2LowestCard = player2.getLowestCard();
+        Card player1LowestCard = players.get(0).getLowestCard();
+        Card player2LowestCard = players.get(1).getLowestCard();
 
         //assign turns from getPlayer1Turn()
-        player1.turn = getPlayer1Turn(player1LowestCard, player2LowestCard);
-        player2.turn = !player1.turn;
+        players.get(0).turn = getPlayer1Turn(player1LowestCard, player2LowestCard);
+        players.get(1).turn = !players.get(0).turn;
 
 //        player1.getLowestCard(trumpCard);
 //        player2.getLowestCard(trumpCard);
 
-        player1.printDeckOfCards();
+        players.get(0).printDeckOfCards();
         //System.out.println("Player1 lowest cards is " + player1LowestCard.suit + " " + player1LowestCard.rank);
 
-        player2.printDeckOfCards();
-        System.out.println("This is " + player1.name + " turn " + player1.turn);
-        System.out.println("This is " + player2.name + " turn " + player2.turn);
+        players.get(1).printDeckOfCards();
+        System.out.println("This is " + players.get(0).name + " turn " + players.get(0).turn);
+        System.out.println("This is " + players.get(1).name + " turn " + players.get(1).turn);
 
         //to check when the deck is empty, cards is the main deck of cards, 20 in the beginning, then 8(6 for each player)
         System.out.println("=================The deck is not empty======================");
         while (!cards.cards.isEmpty()) {
             Thread.sleep(1000);
-            play(player1, player2);
+            play(players.get(0), players.get(1));
             System.out.println("Cards amount in the deck is " + cards.cards.size());
         }
         System.out.println("===============Now The Main deck is empty=====================");
-        while (!player1.deckOfCardsOnHand.isEmpty() && !player2.deckOfCardsOnHand.isEmpty()) {
+        while (!players.get(0).deckOfCardsOnHand.isEmpty() && !players.get(1).deckOfCardsOnHand.isEmpty()) {
             Thread.sleep(1000);
-            play(player1, player2);
-            System.out.println("Cards on hand amount for " + player1.name + " is " + player1.deckOfCardsOnHand.size() + " | Cards on hand amount for " + player2.name + " is " + player2.deckOfCardsOnHand.size());
+            play(players.get(0), players.get(1));
+            System.out.println("Cards on hand amount for " + players.get(0).name + " is " + players.get(0).deckOfCardsOnHand.size() + " | Cards on hand amount for " + players.get(1).name + " is " + players.get(1).deckOfCardsOnHand.size());
         }
-        if (player1.deckOfCardsOnHand.size() > player2.deckOfCardsOnHand.size()) {
-            System.out.println(player1.name + " has lost the game and is a FOOL!");
-        } else if (player1.deckOfCardsOnHand.size() < player2.deckOfCardsOnHand.size()) {
-            System.out.println(player2.name + " has lost the game and is a FOOL!");
+        if (players.get(0).deckOfCardsOnHand.size() > players.get(1).deckOfCardsOnHand.size()) {
+            System.out.println(players.get(0).name + " has lost the game and is a FOOL!");
+        } else if (players.get(0).deckOfCardsOnHand.size() < players.get(1).deckOfCardsOnHand.size()) {
+            System.out.println(players.get(1).name + " has lost the game and is a FOOL!");
         } else {
             System.out.println("There is no FOOL, the game ended even!");
         }
@@ -76,6 +80,15 @@ public class FoolDemo {
 
     }
 
+    //this method allows to assign name and cards to each Player
+    public static void assignPlayers(int numberOfPlayers) {
+
+        for (int i = 0; i < numberOfPlayers; i++) {
+
+            players.add(new Player(cards, "Player" + i));
+        }
+
+    }
     public static void play(Player player1, Player player2) {
         Card player1AttackingCard;
         boolean player2Status;
