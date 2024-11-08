@@ -9,7 +9,7 @@ public class DeckOfCards {
     List<Card> cards;
     Card trumpCard;
     String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
-    Integer[] ranks = {6, 7, 8, 9, 10};
+    Integer[] ranks = {6, 7, 8, 9, 10, 11, 12, 13, 14};
 
     public DeckOfCards() {
         this.cards = new ArrayList<>();
