@@ -77,6 +77,7 @@ public class FoolDemo {
         for (int i = 0; i < players.size(); i++) {
             playersWithLowestCard.put(players.get(i), players.get(i).getLowestCard());
         }
+
         //now will have to get the lowest card and then we will know the Player
         //we want to return not boolean but Player
         //iterate over the entries in the map
