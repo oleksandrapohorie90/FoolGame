@@ -25,11 +25,13 @@ public class Player {
     boolean turn;
     DeckOfCards deckOfCardsMain;
     String name;
+    int index;
 
-    public Player(DeckOfCards deckOfCardsMain, String name) {
+    public Player(DeckOfCards deckOfCardsMain, String name, int index) {
         this.deckOfCardsOnHand = new ArrayList<>();
         this.deckOfCardsMain = deckOfCardsMain;
         this.name = name;
+        this.index = index;
     }
 
     //players draw cards - 6 each
@@ -84,7 +86,6 @@ public class Player {
         }
 
         return deckOfCardsOnHand.removeFirst(); //this will allow to make a turn with first card
-
     }
 
     public boolean getDefendingCard(Card attackingCard) {
