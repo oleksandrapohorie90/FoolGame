@@ -10,6 +10,8 @@ public class FoolDemo {
     static List<Player> players = new ArrayList<>();
     static DeckOfCards cards;
     static Player playerWithFirstTurn;
+    static int indexOfAttackingPlayer;
+    static int indexOfDefendingPlayer;
 
     public static void main(String[] args) throws InterruptedException {
         cards = new DeckOfCards();
@@ -30,33 +32,38 @@ public class FoolDemo {
 //        player1.getLowestCard(trumpCard);
 //        player2.getLowestCard(trumpCard);
 
-        System.out.println("This is " + players.get(0).name + " turn " + players.get(0).turn);
-        System.out.println("This is " + players.get(1).name + " turn " + players.get(1).turn);
-
         //to check when the deck is empty, cards is the main deck of cards, 20 in the beginning, then 8(6 for each player)
         System.out.println("=================The deck is not empty======================");
         //playerWithFirstTurn
-        Player player1 = getPlayer1Turn();
-        //will have to get the next person among 6 players
-        Player player2 = null;
-        int indexOfFirstPlayer = player1.index++;
-        player2 = players.get(indexOfFirstPlayer);
+        indexOfAttackingPlayer = getPlayer1Turn();
+        //playerWhoDefends in first round
+        indexOfDefendingPlayer = findIndexOfDefendingPlayer(indexOfAttackingPlayer);
+        //the turn is true for the index of the user that has the lowest card
+        players.get(indexOfAttackingPlayer).turn = true;
+        players.get(indexOfDefendingPlayer).turn = false;
 
-//        players.set(0,player1);
-//        players.set(1, player2);
+        System.out.println("This is " + players.get(indexOfAttackingPlayer).name + " turn " + players.get(indexOfAttackingPlayer).turn);
+        System.out.println("This is " + players.get(indexOfDefendingPlayer).name + " turn " + players.get(indexOfDefendingPlayer).turn);
 
         while (!cards.cards.isEmpty()) {
             Thread.sleep(1000);
-            play(players.get(0), players.get(1));
+            //this will define the next attacking player - we know the index
+            indexOfAttackingPlayer = play(players.get(indexOfAttackingPlayer), players.get(indexOfDefendingPlayer));
+            //this will define the next defending player - it will be next to new attacking player, so indexOfAttackingPlayer++
+            indexOfDefendingPlayer = findIndexOfDefendingPlayer(indexOfAttackingPlayer);
             System.out.println("Cards amount in the deck is " + cards.cards.size());
         }
 
         System.out.println("===============Now The Main deck is empty=====================");
         while (!players.get(0).deckOfCardsOnHand.isEmpty() && !players.get(1).deckOfCardsOnHand.isEmpty()) {
             Thread.sleep(1000);
-            play(players.get(0), players.get(1));
-            System.out.println("Cards on hand amount for " + players.get(0).name + " is " + players.get(0).deckOfCardsOnHand.size() + " | Cards on hand amount for " + players.get(1).name + " is " + players.get(1).deckOfCardsOnHand.size());
+            //this will define the next attacking player - we know the index
+            indexOfAttackingPlayer = play(players.get(indexOfAttackingPlayer), players.get(indexOfDefendingPlayer));
+            //this will define the next defending player - it will be next to new attacking player, so indexOfAttackingPlayer++
+            indexOfDefendingPlayer = findIndexOfDefendingPlayer(indexOfAttackingPlayer);
+            System.out.println("Cards on hand amount for " + players.get(indexOfAttackingPlayer).name + " is " + players.get(indexOfAttackingPlayer).deckOfCardsOnHand.size() + " | Cards on hand amount for " + players.get(indexOfDefendingPlayer).name + " is " + players.get(indexOfDefendingPlayer).deckOfCardsOnHand.size());
         }
+
         if (players.get(0).deckOfCardsOnHand.size() > players.get(1).deckOfCardsOnHand.size()) {
             System.out.println(players.get(0).name + " has lost the game and is a FOOL!");
         } else if (players.get(0).deckOfCardsOnHand.size() < players.get(1).deckOfCardsOnHand.size()) {
@@ -69,7 +76,7 @@ public class FoolDemo {
     }
 
     //TODO: move to another Class - line 22, 23
-    public static Player getPlayer1Turn() {
+    public static int getPlayer1Turn() {
         //we need to know which player has the lowest card
         Map<Player, Card> playersWithLowestCard = new HashMap<>();
 
@@ -90,13 +97,13 @@ public class FoolDemo {
         }
         //after the loop, lowestEntry will have the Player and Card with the lowest rank
         if (lowestEntry != null) { //to avoid NullPointerException
-            return lowestEntry.getKey();
+            return lowestEntry.getKey().index;
         }
 
-        return null;
+        return -1;
     }
 
-        //TODO: Remember to delete below, it wont be used!
+    //TODO: Remember to delete below, it wont be used!
 
 //        if (!player1Card.suit.equals(cards.trumpCard.suit) && player2Card.suit.equals(cards.trumpCard.suit)) {
 //            return false; //we know that player 1 doesnt have the trump card but player 2 has it, we return false for turn on player1
@@ -105,7 +112,7 @@ public class FoolDemo {
 //        } else { //in case when both of us have trump cards or none of us has trump cards
 //            return player1Card.rank < player2Card.rank;
 //        }
-        //return false;
+    //return false;
 
     //this method allows to assign name and cards to each Player
     public static void assignPlayers(int numberOfPlayers) {
@@ -118,10 +125,20 @@ public class FoolDemo {
         }
     }
 
-    public static void play(Player player1, Player player2) {
-        Card player1AttackingCard;
-        boolean player2Status;
+    public static int findIndexOfDefendingPlayer(int indexOfAttackingPlayer) {
+        //this will have to prevent index out of bound
+        if (indexOfAttackingPlayer < players.size() - 1) {
+            return indexOfAttackingPlayer + 1;
+        }
+        //we assume that if all the players played we will return to the first player
+        return 0;
 
+    }
+
+    public static int play(Player player1, Player player2) {
+        Card player1AttackingCard;
+        //check if the defending player was able to defend
+        boolean player2Status;
 
         //if player1 turn is true then player1 is attacking player
         //if player1 turn is true, then player2 is the defending player
@@ -137,12 +154,18 @@ public class FoolDemo {
                 System.out.println("defendingPlayer has: " + player2.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + player1.deckOfCardsOnHand.size() + " cards.");
                 player1.drawCard(1);
                 player2.drawCard(1);
+                //we will focus on the player that has true value bc it is the one who's going to attack next and the person next to him will be next defending player
+                return player2.index;
             } else {
                 System.out.println(player1.name + " did the turn and " + player2.name + " couldn't defended successfully, so he took the card in and lost his turn!");
                 player1.turn = true; //we need to keep the turns values accurate, player1 turn remains true
                 player2.turn = false; //player2 turn remain false
                 System.out.println("defendingPlayer has: " + player2.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + player1.deckOfCardsOnHand.size());
                 player1.drawCard(1); //draw more cards from gen deck and its attacking player turn again
+                //TODO: I need to get plus 1 so I have +2 in the case when the attacking player remains the same and the defending player shouldn't be attacked twice
+                //player 1 has the turn and also we are iterating to +1 for the index of the defending player
+                //indexOfDefendingPlayer = findIndexOfDefendingPlayer(player2.index);
+                return player1.index;
             }
         } else {
             player1AttackingCard = player2.getAttackingCard();
@@ -155,14 +178,18 @@ public class FoolDemo {
                 System.out.println("defendingPlayer has: " + player1.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + player2.deckOfCardsOnHand.size() + " cards.");
                 player2.drawCard(1);
                 player1.drawCard(1);
+                return player1.index;
             } else {
                 System.out.println(player2.name + " did the turn and " + player1.name + " couldn't defended successfully, so he took the card in and lost his turn!");
                 player2.turn = true; //we need to keep the turns values accurate, player2 turn remains true
                 player1.turn = false; //player1 turn remain false
                 player2.drawCard(1); //draw more cards from gen deck and its attacking player turn again
                 System.out.println("defendingPlayer has: " + player1.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + player2.deckOfCardsOnHand.size() + " cards.");
+                //indexOfDefendingPlayer = findIndexOfDefendingPlayer(player1.index);
+                return player2.index;
             }
         }
+        //TODO: to remove players that dont have cards
 
 
     }
