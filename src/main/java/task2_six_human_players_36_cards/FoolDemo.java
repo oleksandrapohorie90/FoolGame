@@ -130,9 +130,9 @@ public class FoolDemo {
         if (indexOfAttackingPlayer < players.size() - 1) {
             return indexOfAttackingPlayer + 1;
         }
+
         //we assume that if all the players played we will return to the first player
         return 0;
-
     }
 
     public static int play(Player attackingPlayer, Player defendingPlayer) {
