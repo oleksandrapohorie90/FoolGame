@@ -160,7 +160,6 @@ public class FoolDemo {
                 attackingPlayer.drawCard(1); //draw more cards from gen deck and its attacking player turn again
                 //TODO: I need to get plus 1 so I have +2 in the case when the attacking player remains the same and the defending player shouldn't be attacked twice
                 //player 1 has the turn and also we are iterating to +1 for the index of the defending player
-                //indexOfDefendingPlayer = findIndexOfDefendingPlayer(defendingPlayer.index);
                 return attackingPlayer.index;
             }
         }
