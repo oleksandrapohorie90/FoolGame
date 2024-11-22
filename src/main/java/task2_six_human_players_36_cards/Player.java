@@ -84,9 +84,16 @@ public class Player {
             System.out.println("Your deck is empty");
             return null;
         }
-
         return deckOfCardsOnHand.removeFirst(); //this will allow to make a turn with first card
     }
+
+    /*
+   method to compare 2 cards and also pass the trump Card(suit) , method returns true false , loop through defender card and find first matching card that will beat the attacking card of the attacker player -
+    */
+
+    /*
+    who has the lowest card, then that person
+     */
 
     public boolean getDefendingCard(Card attackingCard) {
         boolean status = false; //this will show whose turn it is

@@ -135,62 +135,37 @@ public class FoolDemo {
 
     }
 
-    public static int play(Player player1, Player player2) {
+    public static int play(Player attackingPlayer, Player defendingPlayer) {
         Card player1AttackingCard;
         //check if the defending player was able to defend
         boolean player2Status;
 
-        //if player1 turn is true then player1 is attacking player
-        //if player1 turn is true, then player2 is the defending player
+            player1AttackingCard = attackingPlayer.getAttackingCard();
+            player2Status = defendingPlayer.getDefendingCard(player1AttackingCard);
 
-        if (player1.turn) {
-            player1AttackingCard = player1.getAttackingCard();
-            player2Status = player2.getDefendingCard(player1AttackingCard);
-            //playerStatus means if you are able to defend then the status var will be true
             if (player2Status) {
-                System.out.println(player1.name + " did the turn and " + player2.name + " defended successfully!");
-                player1.turn = false;
-                player2.turn = true;
-                System.out.println("defendingPlayer has: " + player2.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + player1.deckOfCardsOnHand.size() + " cards.");
-                player1.drawCard(1);
-                player2.drawCard(1);
+                System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " defended successfully!");
+                attackingPlayer.turn = false;
+                defendingPlayer.turn = true;
+                System.out.println("defendingPlayer has: " + defendingPlayer.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + attackingPlayer.deckOfCardsOnHand.size() + " cards.");
+                attackingPlayer.drawCard(1);
+                defendingPlayer.drawCard(1);
                 //we will focus on the player that has true value bc it is the one who's going to attack next and the person next to him will be next defending player
-                return player2.index;
+                return defendingPlayer.index;
             } else {
-                System.out.println(player1.name + " did the turn and " + player2.name + " couldn't defended successfully, so he took the card in and lost his turn!");
-                player1.turn = true; //we need to keep the turns values accurate, player1 turn remains true
-                player2.turn = false; //player2 turn remain false
-                System.out.println("defendingPlayer has: " + player2.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + player1.deckOfCardsOnHand.size());
-                player1.drawCard(1); //draw more cards from gen deck and its attacking player turn again
+                System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " couldn't defended successfully, so he took the card in and lost his turn!");
+                attackingPlayer.turn = true; //we need to keep the turns values accurate, attackingPlayer turn remains true
+                defendingPlayer.turn = false; //defendingPlayer turn remain false
+                System.out.println("defendingPlayer has: " + defendingPlayer.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + attackingPlayer.deckOfCardsOnHand.size());
+                attackingPlayer.drawCard(1); //draw more cards from gen deck and its attacking player turn again
                 //TODO: I need to get plus 1 so I have +2 in the case when the attacking player remains the same and the defending player shouldn't be attacked twice
                 //player 1 has the turn and also we are iterating to +1 for the index of the defending player
-                //indexOfDefendingPlayer = findIndexOfDefendingPlayer(player2.index);
-                return player1.index;
-            }
-        } else {
-            player1AttackingCard = player2.getAttackingCard();
-            player2Status = player1.getDefendingCard(player1AttackingCard);
-            //playerStatus means if you are able to defend then the status var will be true
-            if (player2Status) {
-                System.out.println(player2.name + " did the turn and " + player1.name + " defended successfully!");
-                player2.turn = false;
-                player1.turn = true;
-                System.out.println("defendingPlayer has: " + player1.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + player2.deckOfCardsOnHand.size() + " cards.");
-                player2.drawCard(1);
-                player1.drawCard(1);
-                return player1.index;
-            } else {
-                System.out.println(player2.name + " did the turn and " + player1.name + " couldn't defended successfully, so he took the card in and lost his turn!");
-                player2.turn = true; //we need to keep the turns values accurate, player2 turn remains true
-                player1.turn = false; //player1 turn remain false
-                player2.drawCard(1); //draw more cards from gen deck and its attacking player turn again
-                System.out.println("defendingPlayer has: " + player1.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + player2.deckOfCardsOnHand.size() + " cards.");
-                //indexOfDefendingPlayer = findIndexOfDefendingPlayer(player1.index);
-                return player2.index;
+                //indexOfDefendingPlayer = findIndexOfDefendingPlayer(defendingPlayer.index);
+                return attackingPlayer.index;
             }
         }
         //TODO: to remove players that dont have cards
 
 
-    }
+
 }
