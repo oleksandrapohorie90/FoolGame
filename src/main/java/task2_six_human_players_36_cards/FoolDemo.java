@@ -140,31 +140,30 @@ public class FoolDemo {
         //check if the defending player was able to defend
         boolean player2Status;
 
-            player1AttackingCard = attackingPlayer.getAttackingCard();
-            player2Status = defendingPlayer.getDefendingCard(player1AttackingCard);
+        player1AttackingCard = attackingPlayer.getAttackingCard();
+        player2Status = defendingPlayer.getDefendingCard(player1AttackingCard, cards.trumpCard.suit);
 
-            if (player2Status) {
-                System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " defended successfully!");
-                attackingPlayer.turn = false;
-                defendingPlayer.turn = true;
-                System.out.println("defendingPlayer has: " + defendingPlayer.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + attackingPlayer.deckOfCardsOnHand.size() + " cards.");
-                attackingPlayer.drawCard(1);
-                defendingPlayer.drawCard(1);
-                //we will focus on the player that has true value bc it is the one who's going to attack next and the person next to him will be next defending player
-                return defendingPlayer.index;
-            } else {
-                System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " couldn't defended successfully, so he took the card in and lost his turn!");
-                attackingPlayer.turn = true; //we need to keep the turns values accurate, attackingPlayer turn remains true
-                defendingPlayer.turn = false; //defendingPlayer turn remain false
-                System.out.println("defendingPlayer has: " + defendingPlayer.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + attackingPlayer.deckOfCardsOnHand.size());
-                attackingPlayer.drawCard(1); //draw more cards from gen deck and its attacking player turn again
-                //TODO: I need to get plus 1 so I have +2 in the case when the attacking player remains the same and the defending player shouldn't be attacked twice
-                //player 1 has the turn and also we are iterating to +1 for the index of the defending player
-                return attackingPlayer.index;
-            }
+        if (player2Status) {
+            System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " defended successfully!");
+            attackingPlayer.turn = false;
+            defendingPlayer.turn = true;
+            System.out.println("defendingPlayer has: " + defendingPlayer.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + attackingPlayer.deckOfCardsOnHand.size() + " cards.");
+            attackingPlayer.drawCard(1);
+            defendingPlayer.drawCard(1);
+            //we will focus on the player that has true value bc it is the one who's going to attack next and the person next to him will be next defending player
+            return defendingPlayer.index;
+        } else {
+            System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " couldn't defended successfully, so he took the card in and lost his turn!");
+            attackingPlayer.turn = true; //we need to keep the turns values accurate, attackingPlayer turn remains true
+            defendingPlayer.turn = false; //defendingPlayer turn remain false
+            System.out.println("defendingPlayer has: " + defendingPlayer.deckOfCardsOnHand.size() + " cards now, but attacking player has: " + attackingPlayer.deckOfCardsOnHand.size());
+            attackingPlayer.drawCard(1); //draw more cards from gen deck and its attacking player turn again
+            //TODO: I need to get plus 1 so I have +2 in the case when the attacking player remains the same and the defending player shouldn't be attacked twice
+            //player 1 has the turn and also we are iterating to +1 for the index of the defending player
+            return attackingPlayer.index;
         }
-        //TODO: to remove players that dont have cards
-
+    }
+    //TODO: to remove players that dont have cards
 
 
 }
