@@ -25,13 +25,6 @@ public class FoolDemo {
         Card player1LowestCard = players.get(0).getLowestCard();
         Card player2LowestCard = players.get(1).getLowestCard();
 
-        //assign turns from getPlayer1Turn()
-        //playerWithFirstTurn = getPlayer1Turn(players);
-        //players.get(1).turn = !players.get(0).turn;
-
-//        player1.getLowestCard(trumpCard);
-//        player2.getLowestCard(trumpCard);
-
         //to check when the deck is empty, cards is the main deck of cards, 20 in the beginning, then 8(6 for each player)
         System.out.println("=================The deck is not empty======================");
         //playerWithFirstTurn
@@ -139,9 +132,8 @@ public class FoolDemo {
         Card player1AttackingCard;
         //check if the defending player was able to defend
         boolean player2Status;
-
         player1AttackingCard = attackingPlayer.getAttackingCard();
-        player2Status = defendingPlayer.getDefendingCard(player1AttackingCard, cards.trumpCard.suit);
+        player2Status = defendingPlayer.iterateCards(player1AttackingCard, defendingPlayer.deckOfCardsOnHand, cards.trumpCard.suit);
 
         if (player2Status) {
             System.out.println(attackingPlayer.name + " did the turn and " + defendingPlayer.name + " defended successfully!");
@@ -163,7 +155,7 @@ public class FoolDemo {
             return attackingPlayer.index;
         }
     }
-    //TODO: to remove players that dont have cards
+    //TODO: 1. to remove players that dont have cards; current issues: 2. Player0 did the turn and Player1 couldn't defended successfully, so he took the card in and lost his turn!defendingPlayer has: 7 cards now, but attacking player has: 5 Cards on hand amount for Player0 is 5 | Cards on hand amount for Player1 is 7. Player0 did the turn and Player1 defended successfully!
 
 
 }
