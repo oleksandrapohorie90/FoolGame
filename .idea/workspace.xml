@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0087790-c257-4026-bb67-e461a28fe4f4" name="Changes" comment="11/21/2024">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/task2_six_human_players_36_cards/FoolDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task2_six_human_players_36_cards/FoolDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/task2_six_human_players_36_cards/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task2_six_human_players_36_cards/Player.java" afterDir="false" />
+    <list default="true" id="e0087790-c257-4026-bb67-e461a28fe4f4" name="Changes" comment="11/26/2024">
+      <change afterPath="$PROJECT_DIR$/src/main/java/task3_six_human_players_52_cards/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/task3_six_human_players_52_cards/DeckOfCards.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/task3_six_human_players_52_cards/FoolDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/task3_six_human_players_52_cards/GameRules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/task3_six_human_players_52_cards/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,18 +65,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FoolDemo.executor&quot;: &quot;Run&quot;,
-    &quot;Application.task2_six_human_players_36_cards.FoolDemo.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/task2_six_human_players_36_cards&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/org/example/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FoolDemo.executor": "Run",
+    "Application.task2_six_human_players_36_cards.FoolDemo.executor": "Run",
+    "Application.task3_six_human_players_52_cards.FoolDemo.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/task3_six_human_players_52_cards",
+    "onboarding.tips.debug.path": "/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/org/example/Main.java",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/task2_six_human_players_36_cards" />
@@ -84,7 +87,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/spades,diamonds,hearts,clubs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.task2_six_human_players_36_cards.FoolDemo">
+  <component name="RunManager" selected="Application.task3_six_human_players_52_cards.FoolDemo">
     <configuration name="FoolDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="task1_two_human_players_20_cards.FoolDemo" />
       <module name="FoolGame" />
@@ -111,8 +114,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="task3_six_human_players_52_cards.FoolDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="task3_six_human_players_52_cards.FoolDemo" />
+      <module name="FoolGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="task3_six_human_players_52_cards.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.task3_six_human_players_52_cards.FoolDemo" />
         <item itemvalue="Application.task2_six_human_players_36_cards.FoolDemo" />
         <item itemvalue="Application.FoolDemo" />
         <item itemvalue="Application.FoolDemo" />
@@ -376,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732236611464</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="11/26/2024">
+      <option name="closed" value="true" />
+      <created>1732666786897</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1732666786897</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -389,7 +414,8 @@
     <MESSAGE value="11/7/2024" />
     <MESSAGE value="11/12/2024" />
     <MESSAGE value="11/21/2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="11/21/2024" />
+    <MESSAGE value="11/26/2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="11/26/2024" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
