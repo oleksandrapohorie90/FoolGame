@@ -21,7 +21,7 @@ public class FoolDemo {
 
         //to add jokers
         cards.addJokerCard(2);
-
+        System.out.println("The amount of cards in the main deck is: " + cards.cards.size());
         //assigning all 6 players with names and cards
         assignPlayers(6);
 
