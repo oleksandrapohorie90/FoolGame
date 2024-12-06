@@ -7,7 +7,6 @@
     <list default="true" id="e0087790-c257-4026-bb67-e461a28fe4f4" name="Changes" comment="11/26/2024">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/task4_six_human_players_54_cards_2Jokers/FoolDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task4_six_human_players_54_cards_2Jokers/FoolDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/task4_six_human_players_54_cards_2Jokers/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task4_six_human_players_54_cards_2Jokers/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -448,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733443199132</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="11/26/2024">
+      <option name="closed" value="true" />
+      <created>1733444198997</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1733444198997</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
