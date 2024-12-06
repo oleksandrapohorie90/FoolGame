@@ -33,7 +33,6 @@ public class DeckOfCards {
         }
         //to mix all cards
         Collections.shuffle(cards);
-
         return cards;
     }
 

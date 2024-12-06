@@ -125,11 +125,11 @@ public class Player {
         //Im checking the attacker card if its trump and Im checking the defender cards if there is any trump
         if (attackingCard.suit.equals(trumpCardSuit) && hasTrumpCards(trumpCardSuit)) {
             //we are comparing only trump cards
-             if(defendingCard.rank > attackingCard.rank && defendingCard.suit.equals(trumpCardSuit)){// I was able to defend
-            //if my trump card rank is lower - I still take the card
-            return true;
+            if (defendingCard.rank > attackingCard.rank && defendingCard.suit.equals(trumpCardSuit)) {// I was able to defend
+                //if my trump card rank is lower - I still take the card
+                return true;
             }
-             return hasJokerCard(); //the case when I can still defend if I have a Joker
+            return hasJokerCard(); //the case when I can still defend if I have a Joker
         } else if (!attackingCard.suit.equals(trumpCardSuit) && hasTrumpCards(trumpCardSuit)) {
             //Im checking if I have any card that is matching the suit of attacking card and is higher in rank then that, if there is any then I keep my trumpCard for later, if not then I have to use my trumpCard to beat attacking card
             //In this case it will only compare the 1st cards rank, not go through all of the cards ranks
@@ -139,9 +139,12 @@ public class Player {
                 //if its false it jumps back in
                 return defendingCard.suit.equals(trumpCardSuit); // I was able to defend
             }
+        } else if (attackingCard.suit.equals("Joker") && hasJokerCard()) {
+            System.out.println("==============================================Now the attacking Card is Joker and the defending Card is Joker!===========================================");
+            return true;
         } else {
             //I was able to defend
-            if (defendingCard.suit.equals(attackingCard.suit) && defendingCard.rank > attackingCard.rank){
+            if (defendingCard.suit.equals(attackingCard.suit) && defendingCard.rank > attackingCard.rank) {
                 return true;
             }
             return hasJokerCard();
