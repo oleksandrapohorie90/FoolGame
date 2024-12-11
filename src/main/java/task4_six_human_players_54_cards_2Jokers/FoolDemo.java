@@ -125,6 +125,14 @@ public class FoolDemo {
         defendingPlayer.turn = defended;
     }
 
+    //implemented the flag to dynamically switch turns
+    public static void drawCard(Player attackingPlayer, Player defendingPlayer, boolean defended) {
+        if (defended) {
+            defendingPlayer.drawCard(1);
+        }
+        attackingPlayer.drawCard(1);
+    }
+
     //implemented the flag to execute correct messages
     public static void executeMessage(Player attackingPlayer, Player defendingPlayer, boolean defended) {
         System.out.println("defendingPlayer has: " + defendingPlayer.deckOfCardsOnHand.size() + " cards now and attackingPlayer has " + attackingPlayer.deckOfCardsOnHand.size() + " cards.");
@@ -133,26 +141,20 @@ public class FoolDemo {
     }
 
     public static int play(Player attackingPlayer, Player defendingPlayer) {
-        Card player1AttackingCard;
-        boolean player2Status; //check if the defending player was able to defend
-        player1AttackingCard = attackingPlayer.getAttackingCard();
-        player2Status = defendingPlayer.iterateCards(player1AttackingCard, defendingPlayer.deckOfCardsOnHand, cards.trumpCard.suit);
+        Card player1AttackingCard = attackingPlayer.getAttackingCard();
+        //check if the defending player was able to defend
+        boolean player2Status = defendingPlayer.iterateCards(player1AttackingCard, defendingPlayer.deckOfCardsOnHand, cards.trumpCard.suit);
+        executeMessage(attackingPlayer, defendingPlayer, player2Status);
+        setTurn(attackingPlayer, defendingPlayer, player2Status);
+        drawCard(attackingPlayer, defendingPlayer, player2Status);
         if (player2Status) {
-            executeMessage(attackingPlayer, defendingPlayer, player2Status);
-            setTurn(attackingPlayer, defendingPlayer, player2Status);
-            attackingPlayer.drawCard(1);
-            defendingPlayer.drawCard(1);
-            //we will focus on the player that has true value bc it is the one who's going to attack next and the person next to him will be next defending player
             return defendingPlayer.index;
         } else {
-            executeMessage(attackingPlayer, defendingPlayer, player2Status);
-            setTurn(attackingPlayer, defendingPlayer, player2Status);//we need to keep the turns values accurate, attackingPlayer turn remains true
-            attackingPlayer.drawCard(1); //draw more cards from gen deck and its attacking player turn again
-            //TODO: I need to get plus 1 so I have +2 in the case when the attacking player remains the same and the defending player shouldn't be attacked twice
-            //player 1 has the turn and also we are iterating to +1 for the index of the defending player
             return attackingPlayer.index;
         }
+
+        //cards = cards.isEmpty() ? deckOfCardsOnHand : cards;
     }
     //TODO: 1. to remove players that dont have cards; current issues: 2. Player0 did the turn and Player1 couldn't defended successfully, so he took the card in and lost his turn!defendingPlayer has: 7 cards now, but attacking player has: 5 Cards on hand amount for Player0 is 5 | Cards on hand amount for Player1 is 7. Player0 did the turn and Player1 defended successfully!
-
+    //TODO: I need to get plus 1 so I have +2 in the case when the attacking player remains the same and the defending player shouldn't be attacked twice
 }
