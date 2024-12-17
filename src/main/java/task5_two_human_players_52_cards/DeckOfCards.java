@@ -7,6 +7,7 @@ import java.util.List;
 public class DeckOfCards {
     //main deck of cards
     List<Card> cards;
+    List<Card> faceUpCards;
     String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
     Integer[] ranks = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
@@ -17,6 +18,12 @@ public class DeckOfCards {
     }
 
     public void printDeckOfCards() {
+        for (Card card : cards) {
+            System.out.println("The card suit is: " + card.getSuit() + "\nThe card rank is: " + card.getRank());
+        }
+    }
+
+    public void combineCards() {
         for (Card card : cards) {
             System.out.println("The card suit is: " + card.getSuit() + "\nThe card rank is: " + card.getRank());
         }
