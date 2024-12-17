@@ -1,5 +1,4 @@
 package task4_six_human_players_54_cards_2Jokers;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +58,6 @@ public class FoolDemo {
             indexOfDefendingPlayer = findIndexOfDefendingPlayer(indexOfAttackingPlayer);
             System.out.println("Cards on hand amount for " + players.get(indexOfAttackingPlayer).name + " is " + players.get(indexOfAttackingPlayer).deckOfCardsOnHand.size() + " | Cards on hand amount for " + players.get(indexOfDefendingPlayer).name + " is " + players.get(indexOfDefendingPlayer).deckOfCardsOnHand.size());
         }
-
         if (players.get(0).deckOfCardsOnHand.size() > players.get(1).deckOfCardsOnHand.size()) {
             System.out.println(players.get(0).name + " has lost the game and is a FOOL!");
         } else if (players.get(0).deckOfCardsOnHand.size() < players.get(1).deckOfCardsOnHand.size()) {
@@ -67,7 +65,6 @@ public class FoolDemo {
         } else {
             System.out.println("There is no FOOL, the game ended even!");
         }
-
         System.out.println("The game is over, the deck is empty!");
     }
 
@@ -140,13 +137,25 @@ public class FoolDemo {
         System.out.println(defendedOrNo);
     }
 
+    //implemented remove cards
+    public static Player getPlayers(Player attackingPlayer) {
+        if (attackingPlayer.getAttackingCard() == null) {
+            players.remove(attackingPlayer.index);
+            int index = findIndexOfDefendingPlayer(attackingPlayer.index);
+            return players.get(index);
+        }
+        return attackingPlayer;
+    }
+
     public static int play(Player attackingPlayer, Player defendingPlayer) {
+        attackingPlayer = getPlayers(attackingPlayer);
         Card player1AttackingCard = attackingPlayer.getAttackingCard();
         //check if the defending player was able to defend
         boolean player2Status = defendingPlayer.iterateCards(player1AttackingCard, defendingPlayer.deckOfCardsOnHand, cards.trumpCard.suit);
         executeMessage(attackingPlayer, defendingPlayer, player2Status);
         setTurn(attackingPlayer, defendingPlayer, player2Status);
         drawCard(attackingPlayer, defendingPlayer, player2Status);
+
         if (player2Status) {
             return defendingPlayer.index;
         } else {
