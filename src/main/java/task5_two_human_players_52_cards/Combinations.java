@@ -1,7 +1,5 @@
 package task5_two_human_players_52_cards;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Combinations {
@@ -43,10 +41,11 @@ public class Combinations {
         int count = 0;
         String suit = faceUpCards.getFirst().getSuit();
 
-        for (int i = 0; i < faceUpCards.size(); i++) {
-            if (faceUpCards.get(i).getSuit().equals(suit)) {
+        for (Card faceUpCard : faceUpCards) {
+            if (faceUpCard.getSuit().equals(suit)) {
                 count += 1;
-                i++;
+            } else {
+                faceUpCards.remove(faceUpCard);
             }
         }
         //checking if cards have the same suite and are at least 5
@@ -60,19 +59,26 @@ public class Combinations {
          */
         List<Card> royalFlash = new ArrayList<>();
         faceUpCards.addAll(cardsOnHand);
+
         if (has5_OfTheSameSuit(faceUpCards)) {
+            System.out.println("We are in the if in getRoyalFlush");
+            String suite = faceUpCards.getFirst().getSuit();
             for (int i = 0; i < faceUpCards.size(); i++) {
                 if (faceUpCards.get(i).getRank() == 14 || faceUpCards.get(i).getRank() == 13 || faceUpCards.get(i).getRank() == 12 || faceUpCards.get(i).getRank() == 11 || faceUpCards.get(i).getRank() == 10) {
+                    suite = faceUpCards.get(i).getSuit();
                     royalFlash.add(faceUpCards.get(i));
                 }
-
             }
         }
+
         return royalFlash;
     }
 
     public void getStraightFlush(List<Card> cardsOnHand) {
-
+        /**
+         *  2. Straight Flush (T♥ 9♥ 8♥ 7♥ 6♥)
+         *      * Also very rare, a straight flush consists of any straight that is all the same suit.
+         */
     }
 
     public void getFourOfAKind(List<Card> cardsOnHand) {
