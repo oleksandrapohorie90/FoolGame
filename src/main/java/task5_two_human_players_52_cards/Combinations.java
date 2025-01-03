@@ -1,9 +1,6 @@
 package task5_two_human_players_52_cards;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Combinations {
     /**
@@ -38,35 +35,12 @@ public class Combinations {
      * 10. High Card (A♠ J♦ 8♣ 6♠ 2♥)
      * High card is when you have five cards that do not interact with each other to make any of the above hands.
      */
-    private List<Card> combinedCards = new ArrayList<>();
-
-    public boolean has5_OfTheSameSuit(List<Card> faceUpCards) {
-        int count = 0;
-        String suit = faceUpCards.getFirst().getSuit();
-
-        for (Card faceUpCard : faceUpCards) {
-            if (faceUpCard.getSuit().equals(suit)) {
-                count += 1;
-            } else {
-                faceUpCards.remove(faceUpCard);
-            }
-        }
-        //checking if cards have the same suite and are at least 5
-        return count >= 5;
-    }
 
 
-    //the return type can be boolean, will see
-    public List<Card> getRoyalFlush(List<Card> cardsOnHand, List<Card> faceUpCards) {
-        /** 1. Royal Flush (A♦ K♦ Q♦ J♦ T♦)
-         * The best hand possible, a royal flush consists of A, K, Q, J and 10, all of the same suit.
-         */
-        List<Card> royalFlash = new ArrayList<>();
-        faceUpCards.addAll(cardsOnHand);
-        System.out.println("All the cards combined are: " + faceUpCards);
+    public Map<String, String> getMostRepeatedSuit(List<Card> cards) {
+        Map<String, String> mostRepeatedSuit = new HashMap<>();
 
-        //list that gets us all of the 7 suit
-        List<String> suits = faceUpCards.stream()
+        List<String> suits = cards.stream()
                 .map(Card::getSuit)
                 .toList();
 
@@ -77,17 +51,36 @@ public class Combinations {
                 .orElse(null);
         System.out.println("The most repeated suit is: " + mostRepeated);
         // Find the amount of repeated suits - must be 5
-        long mostRepeatedCount = mostRepeated != null
+        Integer mostRepeatedCount = mostRepeated != null
                 ? Collections.frequency(suits, mostRepeated)
                 : 0;
+        mostRepeatedSuit.put("count", String.valueOf(mostRepeatedCount));
+        mostRepeatedSuit.put("suit", mostRepeated);
+
         System.out.println("The most repeated suit number is: " + mostRepeatedCount);
+        return mostRepeatedSuit;
+    }
+
+
+    //the return type can be boolean, will see
+    public List<Card> getRoyalFlush(List<Card> cardsOnHand, List<Card> faceUpCards) {
+        /* 1. Royal Flush (A♦ K♦ Q♦ J♦ T♦)
+         * The best hand possible, a royal flush consists of A, K, Q, J and 10, all of the same suit.
+         */
+        List<Card> royalFlash = new ArrayList<>();
+        faceUpCards.addAll(cardsOnHand);
+        System.out.println("All the cards combined are: " + faceUpCards);
+        Map<String, String> map = getMostRepeatedSuit(faceUpCards);
+
+        int mostRepeatedCount = Integer.parseInt(map.get("count"));
+        String mostRepeatedSuit = map.get("suit");
 
         // Check if we have any of the Royal Flush ranks and if they are of the same suit
         if (mostRepeatedCount >= 5) {
             System.out.println("We are in the if in getRoyalFlush");
             for (int i = 0; i < faceUpCards.size(); i++) {
                 if (faceUpCards.get(i).getRank() == 14 || faceUpCards.get(i).getRank() == 13 || faceUpCards.get(i).getRank() == 12 || faceUpCards.get(i).getRank() == 11 || faceUpCards.get(i).getRank() == 10) {
-                    if (faceUpCards.get(i).getSuit().equals(mostRepeated)) {
+                    if (faceUpCards.get(i).getSuit().equals(mostRepeatedSuit)) {
                         royalFlash.add(faceUpCards.get(i));
                     }
                 }

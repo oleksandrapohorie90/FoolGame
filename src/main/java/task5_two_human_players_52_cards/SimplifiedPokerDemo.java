@@ -15,7 +15,7 @@ public class SimplifiedPokerDemo {
             new Card("Diamonds", 12),
             new Card("Diamonds", 11),
             new Card("Diamonds", 10),
-            new Card("Diamonds", 9),
+            new Card("Hearts", 9),
             new Card("Hearts", 8)
     ));
 
