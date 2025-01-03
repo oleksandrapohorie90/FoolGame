@@ -1,5 +1,8 @@
 package task5_two_human_players_52_cards;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Combinations {
@@ -52,6 +55,7 @@ public class Combinations {
         return count >= 5;
     }
 
+
     //the return type can be boolean, will see
     public List<Card> getRoyalFlush(List<Card> cardsOnHand, List<Card> faceUpCards) {
         /** 1. Royal Flush (A♦ K♦ Q♦ J♦ T♦)
@@ -59,14 +63,33 @@ public class Combinations {
          */
         List<Card> royalFlash = new ArrayList<>();
         faceUpCards.addAll(cardsOnHand);
+        System.out.println("All the cards combined are: " + faceUpCards);
 
-        if (has5_OfTheSameSuit(faceUpCards)) {
+        //list that gets us all of the 7 suit
+        List<String> suits = faceUpCards.stream()
+                .map(Card::getSuit)
+                .toList();
+
+        // Find the most repeated suit in the list
+        String mostRepeated = suits.stream()
+                .distinct()
+                .max(Comparator.comparingInt(a -> Collections.frequency(suits, a)))
+                .orElse(null);
+        System.out.println("The most repeated suit is: " + mostRepeated);
+        // Find the amount of repeated suits - must be 5
+        long mostRepeatedCount = mostRepeated != null
+                ? Collections.frequency(suits, mostRepeated)
+                : 0;
+        System.out.println("The most repeated suit number is: " + mostRepeatedCount);
+
+        // Check if we have any of the Royal Flush ranks and if they are of the same suit
+        if (mostRepeatedCount >= 5) {
             System.out.println("We are in the if in getRoyalFlush");
-            String suite = faceUpCards.getFirst().getSuit();
             for (int i = 0; i < faceUpCards.size(); i++) {
                 if (faceUpCards.get(i).getRank() == 14 || faceUpCards.get(i).getRank() == 13 || faceUpCards.get(i).getRank() == 12 || faceUpCards.get(i).getRank() == 11 || faceUpCards.get(i).getRank() == 10) {
-                    suite = faceUpCards.get(i).getSuit();
-                    royalFlash.add(faceUpCards.get(i));
+                    if (faceUpCards.get(i).getSuit().equals(mostRepeated)) {
+                        royalFlash.add(faceUpCards.get(i));
+                    }
                 }
             }
         }

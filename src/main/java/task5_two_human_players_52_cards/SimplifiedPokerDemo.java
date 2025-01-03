@@ -9,16 +9,15 @@ public class SimplifiedPokerDemo {
     private static Player player1 = new Player(cards, "Alex", 0);
     private static List<Card> cardsOnHand = new ArrayList<>(Arrays.asList(
             new Card("Diamonds", 14),
-            new Card("Hearts", 13)
+            new Card("Diamonds", 13)
     ));
     private static List<Card> faceUpCards = new ArrayList<>(Arrays.asList(
             new Card("Diamonds", 12),
             new Card("Diamonds", 11),
             new Card("Diamonds", 10),
-            new Card("Hearts", 9),
-            new Card("Diamonds", 8)
+            new Card("Diamonds", 9),
+            new Card("Hearts", 8)
     ));
-
 
     public static void main(String[] args) {
         cards = new DeckOfCards();

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0087790-c257-4026-bb67-e461a28fe4f4" name="Changes" comment="12/15/2024">
+    <list default="true" id="e0087790-c257-4026-bb67-e461a28fe4f4" name="Changes" comment="12/17/2024">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/task5_two_human_players_52_cards/Combinations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task5_two_human_players_52_cards/Combinations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/task5_two_human_players_52_cards/SimplifiedPokerDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/task5_two_human_players_52_cards/SimplifiedPokerDemo.java" afterDir="false" />
@@ -63,21 +63,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.FoolDemo.executor": "Run",
-    "Application.SimplifiedPokerDemo.executor": "Run",
-    "Application.task2_six_human_players_36_cards.FoolDemo.executor": "Run",
-    "Application.task3_six_human_players_52_cards.FoolDemo.executor": "Run",
-    "Application.task4_six_human_players_54_cards_2Jokers.FoolDemo.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/task4_six_human_players_52_cards_2Jokers",
-    "onboarding.tips.debug.path": "/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/org/example/Main.java",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.FoolDemo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SimplifiedPokerDemo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.task2_six_human_players_36_cards.FoolDemo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.task3_six_human_players_52_cards.FoolDemo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.task4_six_human_players_54_cards_2Jokers.FoolDemo.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/task4_six_human_players_52_cards_2Jokers&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/alexasky111/IdeaProjects/FoolGame/src/main/java/org/example/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/task4_six_human_players_52_cards_2Jokers" />
@@ -513,7 +513,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734398535977</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="12/17/2024">
+      <option name="closed" value="true" />
+      <created>1734484037723</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1734484037723</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -529,7 +537,8 @@
     <MESSAGE value="11/26/2024" />
     <MESSAGE value="12/10/2024" />
     <MESSAGE value="12/15/2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="12/15/2024" />
+    <MESSAGE value="12/17/2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="12/17/2024" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
