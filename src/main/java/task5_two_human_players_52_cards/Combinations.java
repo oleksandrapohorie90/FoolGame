@@ -1,6 +1,7 @@
 package task5_two_human_players_52_cards;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Combinations {
     /**
@@ -78,10 +79,10 @@ public class Combinations {
         // Check if we have any of the Royal Flush ranks and if they are of the same suit
         if (mostRepeatedCount >= 5) {
             System.out.println("We are in the if in getRoyalFlush");
-            for (int i = 0; i < faceUpCards.size(); i++) {
-                if (faceUpCards.get(i).getRank() == 14 || faceUpCards.get(i).getRank() == 13 || faceUpCards.get(i).getRank() == 12 || faceUpCards.get(i).getRank() == 11 || faceUpCards.get(i).getRank() == 10) {
-                    if (faceUpCards.get(i).getSuit().equals(mostRepeatedSuit)) {
-                        royalFlash.add(faceUpCards.get(i));
+            for (Card faceUpCard : faceUpCards) {
+                if (faceUpCard.getRank() == 14 || faceUpCard.getRank() == 13 || faceUpCard.getRank() == 12 || faceUpCard.getRank() == 11 || faceUpCard.getRank() == 10) {
+                    if (faceUpCard.getSuit().equals(mostRepeatedSuit)) {
+                        royalFlash.add(faceUpCard);
                     }
                 }
             }
@@ -90,16 +91,42 @@ public class Combinations {
         return royalFlash;
     }
 
-    public void getStraightFlush(List<Card> cardsOnHand) {
+    public List<Card> getStraightFlush(List<Card> cardsOnHand, List<Card> faceUpCards) {
         /**
          *  2. Straight Flush (T♥ 9♥ 8♥ 7♥ 6♥)
          *      * Also very rare, a straight flush consists of any straight that is all the same suit.
          */
+        List<Card> straightFlush = new ArrayList<>();
+
+        faceUpCards.addAll(cardsOnHand);
+        System.out.println("All the cards combined are: " + faceUpCards);
+        Map<String, String> map = getMostRepeatedSuit(faceUpCards);
+
+        int mostRepeatedCount = Integer.parseInt(map.get("count"));
+        String mostRepeatedSuit = map.get("suit");
+
+        if (mostRepeatedCount >= 5) {
+            System.out.println("We are in the if in getRoyalFlush");
+            List<Card> consecutiveCards = new ArrayList<>();
+            faceUpCards.stream()
+                    .sorted(Comparator.comparing(Card::getRank))
+                    .forEach(card -> {
+                        if (consecutiveCards.isEmpty() || card.getRank() - consecutiveCards.getLast().getRank() == 1) {
+                            consecutiveCards.add(card);
+                        }
+                    });
+            System.out.println("The Consecutive list is: " + consecutiveCards);
+            consecutiveCards.forEach(System.out::println);
+            for (Card consecutiveCard : consecutiveCards) {
+                if (consecutiveCard.getSuit().equals(mostRepeatedSuit)) {
+                    straightFlush.add(consecutiveCard);
+                }
+            }
+        }
+
+        return straightFlush;
     }
 
-    public void getFourOfAKind(List<Card> cardsOnHand) {
-
-    }
 
 
 }
