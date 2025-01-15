@@ -1,4 +1,4 @@
-package task5_two_human_players_52_cards;
+package task5_SimplifiedPoker_two_human_players_52_cards;
 
 import java.util.ArrayList;
 import java.util.List;
