@@ -220,5 +220,35 @@ public class Combinations {
         return fourOfAKind;
     }
 
+    //* 4. Full House (A♥ A♣ A♦ 9♠ 9♣) 10 , 14
+    //     * A full house consists of three cards of one value and two cards of another.
+    //     * <p>
+    public List<Card> getFullHouse(List<Card> cardsOnHand, List<Card> faceUpCards) {
+
+        List<Card> fullHouse = new ArrayList<>();
+        List<Card> combinedList = new ArrayList<>();
+        combinedList.addAll(cardsOnHand);
+        combinedList.addAll(faceUpCards);
+        Map<String, String> map = getMostRepeatedRank(combinedList);
+
+        String mostRepeatedCount = map.get("count");
+        String mostRepeatedRank = map.get("rank");
+        System.out.println("=========The size of the list of the combinedCards is " + combinedList.size() + "================");
+        if (Integer.parseInt(mostRepeatedCount) == 3) {
+            for (int i = 0; i < combinedList.size(); i++) {
+                if (combinedList.get(i).getRank() == Integer.parseInt(mostRepeatedRank)) {
+                    fullHouse.add(combinedList.get(i));
+                }else if(Objects.equals(combinedList.get(i).getRank(), combinedList.get(i + 1).getRank())){
+
+                }else{
+
+                }
+
+            }
+        }
+
+        System.out.println("The most repeated rank is " + mostRepeatedRank + "And the count is " + mostRepeatedCount);
+        return fullHouse;
+    }
 
 }
