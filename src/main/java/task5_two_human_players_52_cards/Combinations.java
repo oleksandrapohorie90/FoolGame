@@ -168,8 +168,6 @@ public class Combinations {
         return straightFlush;
     }
 
-    //TODO:To accurately count the occurrences of each rank among the cards in hand and the face-up cards, you can modify the getMostRepeatedRank method to count only the cards that are part of the current hand (i.e., the cardsOnHand list).
-
     public static Map<String, String> getMostRepeatedRank(List<Card> cards) {
         Map<String, String> mostRepeatedRank = new HashMap<>();
 
@@ -229,26 +227,50 @@ public class Combinations {
         List<Card> combinedList = new ArrayList<>();
         combinedList.addAll(cardsOnHand);
         combinedList.addAll(faceUpCards);
-        Map<String, String> map = getMostRepeatedRank(combinedList);
 
-        String mostRepeatedCount = map.get("count");
-        String mostRepeatedRank = map.get("rank");
-        System.out.println("=========The size of the list of the combinedCards is " + combinedList.size() + "================");
-        if (Integer.parseInt(mostRepeatedCount) == 3) {
-            for (int i = 0; i < combinedList.size(); i++) {
-                if (combinedList.get(i).getRank() == Integer.parseInt(mostRepeatedRank)) {
-                    fullHouse.add(combinedList.get(i));
-                }else if(Objects.equals(combinedList.get(i).getRank(), combinedList.get(i + 1).getRank())){
+        //count occurrences of each rank
+        Map<Integer, Integer> rankCount = new HashMap<>();
+        for (Card card : combinedList) {
+            int rank = card.getRank();
+            /*
+            rankCount.getOrDefault(rank, 0): Checks if the rank already exists in the rankCount map. If it does, it returns the current count; if not, it returns 0.
 
-                }else{
+           + 1: Increments the count by 1.
 
-                }
+            rankCount.put(rank, ...): Puts the updated count back into the map for the current rank.
+             */
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+        }
+        //check for occurrences
+        Integer threeOfAKind = null;
+        Integer twoOfAKind = null;
 
+        for (Map.Entry<Integer, Integer> entry : rankCount.entrySet()) {
+            if (entry.getValue() == 3) {
+                threeOfAKind = entry.getKey();
+            } else if (entry.getValue() == 2) {
+                twoOfAKind = entry.getKey();
             }
         }
 
-        System.out.println("The most repeated rank is " + mostRepeatedRank + "And the count is " + mostRepeatedCount);
+        //if 3 and 2 of a kind are found in 5 cards, then Full House
+        if (threeOfAKind != null & twoOfAKind != null) {
+            for (Card card : combinedList) {
+                if (Objects.equals(card.getRank(), threeOfAKind)) {
+                    fullHouse.add(card);
+                }
+            }
+            //add pair cards
+            for (Card card : combinedList) {
+                if (Objects.equals(card.getRank(), twoOfAKind)) {
+                    fullHouse.add(card);
+                }
+            }
+        }
+//        System.out.println("The most repeated rank is " + mostRepeatedRank + "And the count is " + mostRepeatedCount);
         return fullHouse;
     }
 
 }
+
+

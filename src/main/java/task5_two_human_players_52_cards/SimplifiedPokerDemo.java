@@ -10,14 +10,14 @@ public class SimplifiedPokerDemo {
     private static Player player1 = new Player(cards, "Alex", 0);
     private static final List<Card> cardsOnHand = new ArrayList<>(Arrays.asList(
             new Card("Clubs", 10),
-            new Card("Clubs", 11)
+            new Card("Diamonds", 10)
     ));
     private static final List<Card> faceUpCards = new ArrayList<>(Arrays.asList(
-            new Card("Clubs", 12),
+            new Card("Hearts", 10),
+            new Card("Spades", 13),
             new Card("Clubs", 13),
-            new Card("Clubs", 14),
-            new Card("Diamonds", 10),
-            new Card("Hearts", 10)
+            new Card("Diamonds", 12),
+            new Card("Hearts", 9)
     ));
 
     public static void main(String[] args) {
@@ -28,6 +28,7 @@ public class SimplifiedPokerDemo {
         List<Card> royalFlush = combinations.getRoyalFlush(cardsOnHand, faceUpCards);
         List<Card> straightFlush = combinations.getStraightFlush(cardsOnHand, faceUpCards);
         List<Card> fourOfAkind = combinations.getFourOfAKind(cardsOnHand, faceUpCards);
+        List<Card> fullHouse = combinations.getFullHouse(cardsOnHand, faceUpCards);
         //System.out.println("Input Cards: " + fourOfAkind);
 
         //System.out.println("The size of FourOfAKind list is: " + fourOfAkind.size());
@@ -38,8 +39,9 @@ public class SimplifiedPokerDemo {
             System.out.println("The size of StraightFlush list is: " + straightFlush.size());
             System.out.println("The player has Straight Flush!");
         } else if (fourOfAkind.size() == 4) {
-
             System.out.println("The player has FourOfAKind!");
+        }else if (fullHouse.size() == 5) {
+            System.out.println("The player has FullHouse!");
         }
 
 
