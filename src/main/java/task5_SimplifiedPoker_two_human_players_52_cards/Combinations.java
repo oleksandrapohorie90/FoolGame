@@ -1,9 +1,8 @@
 package task5_SimplifiedPoker_two_human_players_52_cards;
-
 import java.util.*;
 import java.util.stream.Collectors;
-
 public class Combinations {
+
     /**
      * Combinations:
      * 1. Royal Flush (A♦ K♦ Q♦ J♦ T♦)
