@@ -63,6 +63,5 @@ public class SimplifiedPokerDemo {
             System.out.println("There is no valid combinations!");
         }
 
-
     }
 }
