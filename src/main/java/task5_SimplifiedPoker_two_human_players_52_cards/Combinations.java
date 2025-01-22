@@ -22,10 +22,10 @@ public class Combinations {
      * 5. Flush (A♠ J♠ 8♠ 4♠ 3♠) +
      * A flush is a hand which has all cards of the same suit.
      * <p>
-     * 6. Straight (9♥ 8♠ 7♣ 6♦ 5♣)
+     * 6. Straight (9♥ 8♠ 7♣ 6♦ 5♣) +
      * A straight has 5 cards of consecutive value that are not all the same suit.
      * <p>
-     * 7. Three-of-a-Kind (7♠ 7♦ 7♣ K♦ Q♣)
+     * 7. Three-of-a-Kind (7♠ 7♦ 7♣ K♦ Q♣) +
      * Also known as 'trips', three of a kind is 3 cards of the same value and 2 side cards of different values.
      * <p>
      * 8. Two-Pair (9♣ 9♦ 6♣ 6♠ Q♥)
@@ -293,7 +293,6 @@ public class Combinations {
         return flush.size() == 5 ? flush : new ArrayList<>();
     }
 
-
     /*
      * 6. Straight (9♥ 8♠ 7♣ 6♦ 5♣)
      * A straight has 5 cards of consecutive value that are not all the same suit.
@@ -316,6 +315,33 @@ public class Combinations {
         consecutiveCards.forEach(System.out::println);
 
         return consecutiveCards.size() == 5 ? consecutiveCards : new ArrayList<>();
+    }
+
+    /**
+     * 7. Three-of-a-Kind (7♠ 7♦ 7♣ K♦ Q♣) +
+     *    Also known as 'trips', three of a kind is 3 cards of the same value and 2 side cards of different values.
+     */
+    public List<Card> getThreeOfAKind(List<Card> cardsOnHand, List<Card> faceUpCards) {
+
+        List<Card> threeOfAKind = new ArrayList<>();
+        List<Card> combinedList = new ArrayList<>();
+        combinedList.addAll(cardsOnHand);
+        combinedList.addAll(faceUpCards);
+        Map<String, String> map = getMostRepeatedRank(combinedList);
+
+        String mostRepeatedCount = map.get("count");
+        String mostRepeatedRank = map.get("rank");
+        System.out.println("=========The size of the list of the combinedCards is " + combinedList.size() + "================");
+        if (Integer.parseInt(mostRepeatedCount) == 3) {
+            for (Card card : combinedList) {
+                if (card.getRank() == Integer.parseInt(mostRepeatedRank)) {
+                    threeOfAKind.add(card);
+                }
+            }
+        }
+
+        System.out.println("The most repeated rank is " + mostRepeatedRank + "And the count is " + mostRepeatedCount);
+        return threeOfAKind.size() == 3 ? threeOfAKind : new ArrayList<>();
     }
 
 }

@@ -10,10 +10,10 @@ public class SimplifiedPokerDemo {
     private static Player player1 = new Player(cards, "Alex", 0);
     private static final List<Card> cardsOnHand = new ArrayList<>(Arrays.asList(
             new Card("Diamonds", 9),
-            new Card("Clubs", 8)
+            new Card("Clubs", 9)
     ));
     private static final List<Card> faceUpCards = new ArrayList<>(Arrays.asList(
-            new Card("Spades", 7),
+            new Card("Spades", 9),
             new Card("Hearts", 6),
             new Card("Diamonds", 5),
             new Card("Diamonds", 12),
@@ -31,6 +31,7 @@ public class SimplifiedPokerDemo {
         List<Card> fullHouse = combinations.getFullHouse(cardsOnHand, faceUpCards);
         List<Card> flush = combinations.getFlush(cardsOnHand, faceUpCards);
         List<Card> straight = combinations.getStraight(cardsOnHand, faceUpCards);
+        List<Card> threeOfAKind = combinations.getThreeOfAKind(cardsOnHand, faceUpCards);
 
 
         //System.out.println("The size of FourOfAKind list is: " + fourOfAkind.size());
@@ -48,6 +49,8 @@ public class SimplifiedPokerDemo {
             System.out.println("The player has Flush!");
         }else if (!straight.isEmpty()) {
             System.out.println("The player has Straight!");
+        }else if (!threeOfAKind.isEmpty()) {
+            System.out.println("The player has ThreeOfAKind!");
         }
 
 
