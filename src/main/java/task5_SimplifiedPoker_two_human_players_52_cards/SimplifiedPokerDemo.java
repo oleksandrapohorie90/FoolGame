@@ -10,13 +10,13 @@ public class SimplifiedPokerDemo {
     private static Player player1 = new Player(cards, "Alex", 0);
     private static final List<Card> cardsOnHand = new ArrayList<>(Arrays.asList(
             new Card("Diamonds", 9),
-            new Card("Clubs", 9)
+            new Card("Clubs", 8)
     ));
     private static final List<Card> faceUpCards = new ArrayList<>(Arrays.asList(
-            new Card("Spades", 9),
-            new Card("Diamonds", 7),
-            new Card("Diamonds", 6),
-            new Card("Hearts", 11),
+            new Card("Spades", 7),
+            new Card("Hearts", 6),
+            new Card("Diamonds", 5),
+            new Card("Diamonds", 12),
             new Card("Spades", 11)
     ));
 
@@ -29,19 +29,25 @@ public class SimplifiedPokerDemo {
         List<Card> straightFlush = combinations.getStraightFlush(cardsOnHand, faceUpCards);
         List<Card> fourOfAkind = combinations.getFourOfAKind(cardsOnHand, faceUpCards);
         List<Card> fullHouse = combinations.getFullHouse(cardsOnHand, faceUpCards);
-        //System.out.println("Input Cards: " + fourOfAkind);
+        List<Card> flush = combinations.getFlush(cardsOnHand, faceUpCards);
+        List<Card> straight = combinations.getStraight(cardsOnHand, faceUpCards);
+
 
         //System.out.println("The size of FourOfAKind list is: " + fourOfAkind.size());
-        System.out.println("The size of RoyalFlush list is: " + royalFlush.size());
-        if (royalFlush.size() == 5) {
+        //System.out.println("The size of RoyalFlush list is: " + royalFlush.size());
+        if (!royalFlush.isEmpty()) {
             System.out.println("The player has Royal Flush!");
-        } else if (straightFlush.size() == 5) {
+        } else if (!straightFlush.isEmpty()) {
             System.out.println("The size of StraightFlush list is: " + straightFlush.size());
             System.out.println("The player has Straight Flush!");
-        } else if (fourOfAkind.size() == 4) {
+        } else if (!fourOfAkind.isEmpty()) {
             System.out.println("The player has FourOfAKind!");
-        }else if (fullHouse.size() == 5) {
+        } else if (!fullHouse.isEmpty()) {
             System.out.println("The player has FullHouse!");
+        } else if (!flush.isEmpty()) {
+            System.out.println("The player has Flush!");
+        }else if (!straight.isEmpty()) {
+            System.out.println("The player has Straight!");
         }
 
 
