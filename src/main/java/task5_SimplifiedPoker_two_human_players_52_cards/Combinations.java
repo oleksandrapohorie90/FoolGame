@@ -28,10 +28,10 @@ public class Combinations {
      * 7. Three-of-a-Kind (7♠ 7♦ 7♣ K♦ Q♣) +
      * Also known as 'trips', three of a kind is 3 cards of the same value and 2 side cards of different values.
      * <p>
-     * 8. Two-Pair (9♣ 9♦ 6♣ 6♠ Q♥)
+     * 8. Two-Pair (9♣ 9♦ 6♣ 6♠ Q♥) +
      * ​​Two pair consists of two cards of equal value, another two cards of equal value, and one extra card.
      * <p>
-     * 9. One-Pair (A♦ A♥ K♠ 9♦ 4♥)
+     * 9. One-Pair (A♦ A♥ K♠ 9♦ 4♥) +
      * One pair consists of two cards of the same value, and three extra cards.
      * <p>
      * 10. High Card (A♠ J♦ 8♣ 6♠ 2♥)
@@ -319,7 +319,7 @@ public class Combinations {
 
     /**
      * 7. Three-of-a-Kind (7♠ 7♦ 7♣ K♦ Q♣) +
-     *    Also known as 'trips', three of a kind is 3 cards of the same value and 2 side cards of different values.
+     * Also known as 'trips', three of a kind is 3 cards of the same value and 2 side cards of different values.
      */
     public List<Card> getThreeOfAKind(List<Card> cardsOnHand, List<Card> faceUpCards) {
 
@@ -343,6 +343,123 @@ public class Combinations {
         System.out.println("The most repeated rank is " + mostRepeatedRank + "And the count is " + mostRepeatedCount);
         return threeOfAKind.size() == 3 ? threeOfAKind : new ArrayList<>();
     }
+
+    /**
+     * 8. Two-Pair (9♣ 9♦ 6♣ 6♠ Q♥) +
+     * Two pair consists of two cards of equal value, another two cards of equal value, and one extra card.
+     */
+    public List<Card> getTwoPair(List<Card> cardsOnHand, List<Card> faceUpCards) {
+
+        List<Card> twoPair = new ArrayList<>();
+        List<Card> combinedList = new ArrayList<>();
+        combinedList.addAll(cardsOnHand);
+        combinedList.addAll(faceUpCards);
+
+        //count occurrences of each rank
+        Map<Integer, Integer> rankCount = new HashMap<>();
+        for (Card card : combinedList) {
+            int rank = card.getRank();
+            /*
+            rankCount.getOrDefault(rank, 0): Checks if the rank already exists in the rankCount map. If it does, it returns the current count; if not, it returns 0.
+
+           + 1: Increments the count by 1.
+
+            rankCount.put(rank, ...): Puts the updated count back into the map for the current rank.
+             */
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+        }
+        //check for occurrences
+        Integer twoOfAnotherKind = null;
+        Integer twoOfAKind = null;
+
+        for (Map.Entry<Integer, Integer> entry : rankCount.entrySet()) {
+            if (entry.getValue() == 2) {
+                twoOfAnotherKind = entry.getKey();
+            }
+        }
+
+        rankCount.remove(twoOfAnotherKind);
+
+        for (Map.Entry<Integer, Integer> entry : rankCount.entrySet()) {
+            if (entry.getValue() == 2) {
+                twoOfAKind = entry.getKey();
+            }
+        }
+
+        //if 2 and 2 of a kind are found in 5 cards, then Two Pair combination
+        if (twoOfAnotherKind != null & twoOfAKind != null) {
+            for (Card card : combinedList) {
+                if (Objects.equals(card.getRank(), twoOfAnotherKind)) {
+                    twoPair.add(card);
+                }
+            }
+            //add pair cards
+            for (Card card : combinedList) {
+                if (Objects.equals(card.getRank(), twoOfAKind)) {
+                    twoPair.add(card);
+                }
+            }
+        }
+        return twoPair.size() == 4 ? twoPair : new ArrayList<>();
+    }
+
+    /**
+     * 9. One-Pair (A♦ A♥ K♠ 9♦ 4♥) +
+     * One pair consists of two cards of the same value, and three extra cards.
+     */
+    public List<Card> getOnePair(List<Card> cardsOnHand, List<Card> faceUpCards) {
+
+        List<Card> onePair = new ArrayList<>();
+        List<Card> combinedList = new ArrayList<>();
+        combinedList.addAll(cardsOnHand);
+        combinedList.addAll(faceUpCards);
+
+        //count occurrences of each rank
+        Map<Integer, Integer> rankCount = new HashMap<>();
+        for (Card card : combinedList) {
+            int rank = card.getRank();
+            /*
+            rankCount.getOrDefault(rank, 0): Checks if the rank already exists in the rankCount map. If it does, it returns the current count; if not, it returns 0.
+
+           + 1: Increments the count by 1.
+
+            rankCount.put(rank, ...): Puts the updated count back into the map for the current rank.
+             */
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+        }
+
+        Integer twoOfAKind = null;
+
+        for (Map.Entry<Integer, Integer> entry : rankCount.entrySet()) {
+            if (entry.getValue() == 2) {
+                twoOfAKind = entry.getKey();
+            }
+        }
+
+        //if one pair of a kind are found in 5 cards, then Two Pair combination
+        if (twoOfAKind != null) {
+            for (Card card : combinedList) {
+                if (Objects.equals(card.getRank(), twoOfAKind)) {
+                    onePair.add(card);
+                }
+            }
+        }
+        return onePair.size() == 2 ? onePair : new ArrayList<>();
+    }
+
+    /*
+     * 10. High Card (A♠ J♦ 8♣ 6♠ 2♥)
+     * High card is when you have five cards that do not interact with each other to make any of the above hands.
+     */
+    public List<Card> getHighCard(List<Card> cardsOnHand, List<Card> faceUpCards) {
+
+        List<Card> combinedList = new ArrayList<>();
+        combinedList.addAll(cardsOnHand);
+        combinedList.addAll(faceUpCards);
+
+        return combinedList.size() >= 5 ? combinedList : new ArrayList<>();
+    }
+
 
 }
 
